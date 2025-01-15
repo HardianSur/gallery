@@ -9,10 +9,13 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-white dark:bg-gray-900">
-    @include('components.header')
-    <section >
-        @yield('container')
+<body>
+    {{-- @include('components.header') --}}
+    <section class="bg-white dark:bg-gray-900 ">
+        @include('components.sidebar')
+        <div class="p-4 sm:ml-64">
+            @yield('container')
+        </div>
     </section>
 </body>
 

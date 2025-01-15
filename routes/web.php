@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -13,4 +14,13 @@ Route::prefix('/auth')->group(function () {
 
 Route::middleware("auth")->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    Route::prefix('/profile')->group(function(){
+        Route::get('/', function(){
+            return view('profile.index');
+        });
+    });
+    Route::prefix('album')->group(function(){
+        Route::get('/', [AlbumController::class, 'index']);
+
+    });
 });
