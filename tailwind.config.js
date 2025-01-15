@@ -9,7 +9,7 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
-    // darkMode: 'class',
+    darkMode: 'class',
   theme: {
     extend: {
       colors: {
