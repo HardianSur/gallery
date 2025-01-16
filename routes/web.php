@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/auth')->group(function () {
     Route::get('signin', [AuthController::class, 'index'])->name("login")->middleware("guest");
     Route::get('register', [AuthController::class, 'register'])->middleware("guest");
+    Route::post('register', [AuthController::class, 'registerProcess'])->middleware("guest");
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout'])->middleware("auth");
 });
@@ -24,6 +25,7 @@ Route::middleware("auth")->group(function () {
     });
     Route::prefix('album')->group(function(){
         Route::get('/', [AlbumController::class, 'index']);
+        Route::get('/retrieve', [AlbumController::class, 'retrieve']);
         Route::post('/', [AlbumController::class, 'store']);
     });
 });

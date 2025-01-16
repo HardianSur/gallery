@@ -61,13 +61,14 @@ class AuthController extends Controller
             }
 
             $data = new User;
-
             $data->name = $request->post('name');
             $data->username = $request->post('username');
             $data->email = $request->post('email');
             $data->password = bcrypt($request->post('password'));
+            $data->alamat = $request->post('alamat');
+            $data->save();
 
-            return response()->json('Login berhasil', 200);
+            return response()->json('Register berhasil', 200);
         } catch (\Exception $e) {
             Log::error("Internal Server Error", $e);
         }

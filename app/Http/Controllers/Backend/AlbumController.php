@@ -16,7 +16,20 @@ class AlbumController extends Controller
     }
 
     public function retrieve(){
+        try {
+            $user = Auth::user();
 
+            $data = Album::where('user_id', $user->id)->latest()->get();
+
+            $resData= [
+                'data' => $data,
+                'message' => "Successfuly get Data"
+            ];
+
+            return response()->json($resData, 200);
+        } catch (\Exception $e) {
+            Log::error("Internal Server Error", $e);
+        }
     }
 
     public function store(Request $request){
@@ -29,7 +42,6 @@ class AlbumController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors());
             }
-
 
             $user = Auth::user();
 
