@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -27,8 +28,25 @@ class AlbumController extends Controller
             ];
 
             return response()->json($resData, 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error("Internal Server Error", $e);
+        }
+    }
+
+    public function retrieve_by_id($id){
+        try {
+            $user = Auth::user();
+
+            $data = Album::where('user_id', $user->id)->where('id', $id)->first();
+
+            $resData= [
+                'data' => $data,
+                'message' => "Successfuly get Data"
+            ];
+
+            return response()->json($resData, 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 
@@ -47,14 +65,60 @@ class AlbumController extends Controller
 
 
             $data = new Album;
-            $data->name = $request->post('name');
+            $data->title = $request->post('name');
             $data->description = $request->post('description');
             $data->user_id = $user->id;
             $data->save();
 
             return response()->json('Album Berhasil Dibuat', 200);
-        } catch (\Exception $e) {
-            Log::error("Internal Server Error", $e);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
+        }
+    }
+
+    public function update(Request $request, $id){
+        try {
+            $validator = Validator::make($request->post(), [
+                'name' => 'required|string',
+                'description'=> 'required|string',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+
+            $user = Auth::user();
+
+            $data = Album::where('user_id', $user->id)->where('id', $id)->first();
+
+            if (!$data) {
+                return response()->json('Album Tidak Ditemukan', 404);
+            }
+            $data->title = $request->post('name');
+            $data->description = $request->post('description');
+            $data->save();
+
+            return response()->json('Album Berhasil Dibuat', 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
+        }
+    }
+
+    public function destroy(Request $request, $id){
+        try {
+            $user = Auth::user();
+
+            $data = Album::where('user_id', $user->id)->where('id', $id)->first();
+
+            if (!$data) {
+                return response()->json('Album Tidak Ditemukan', 404);
+            }
+
+            $data->delete();
+
+            return response()->json(['message'=>'Album Berhasil Dihapus'], 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 }

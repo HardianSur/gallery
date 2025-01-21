@@ -26,6 +26,9 @@ Route::middleware("auth")->group(function () {
     Route::prefix('album')->group(function(){
         Route::get('/', [AlbumController::class, 'index']);
         Route::get('/retrieve', [AlbumController::class, 'retrieve']);
+        Route::get('/{id}', [AlbumController::class, 'retrieve_by_id']);
         Route::post('/', [AlbumController::class, 'store']);
+        Route::post('/{id}', [AlbumController::class, 'update']);
+        Route::delete('/{id}', [AlbumController::class, 'destroy']);
     });
 });

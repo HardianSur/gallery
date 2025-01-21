@@ -25,7 +25,7 @@
                     </h1>
                     <form class="form space-y-4 md:space-y-6">
                         <div>
-                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username / Email</label>
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username / Email </label>
                             <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
                         </div>
                         <div>
@@ -72,6 +72,7 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        console.log(response);
                         window.location.href = "{{ url('/') }}";
                     },
                     error: function(xhr, status, error) {

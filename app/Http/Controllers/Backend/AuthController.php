@@ -39,9 +39,10 @@ class AuthController extends Controller
             }
             Auth::login($checkUser);
 
+
             return response()->json('Login berhasil', 200);
         } catch (\Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 
@@ -70,7 +71,7 @@ class AuthController extends Controller
 
             return response()->json('Register berhasil', 200);
         } catch (\Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 
@@ -81,7 +82,7 @@ class AuthController extends Controller
 
             return view("auth.index");
         } catch (\Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 }

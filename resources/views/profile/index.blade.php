@@ -49,7 +49,7 @@
                     <button class="bg-gray-800 rounded-lg py-1 px-2 text-sm text-white font-medium">Filter</button>
                 </div>
                 <div>
-                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" data-value="add-album"
                         class="bg-gray-800 rounded-lg py-1 px-2 text-sm text-white font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
                             <path fill-rule="evenodd"
@@ -60,10 +60,10 @@
                     </button>
                 </div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mx-6" id="card-container">
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mx-6" id="card-container">
 
-                <div
-                    class="w-36 max-h-52 md:w-44 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                {{-- <div
+                    class="w-full max-h-52 md:w-52 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img class="rounded-t-lg w-full"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4sYLadZlYBjysS4PHq5-8p-EQHj9qeYxxQ&s"
@@ -84,7 +84,7 @@
                             </svg>
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </section>
@@ -95,6 +95,7 @@
 
     <script>
         $(document).ready(function() {
+
             loadCards();
 
 
@@ -106,15 +107,26 @@
                 $(this).addClass('text-black border-b-2 border-black');
             });
 
+            $('[data-modal-target="crud-modal"]').on('click', function(){
+                $('#crud-modal h3').text('Tambah Album');
+                $('#id').val('');
+                $('#name').val('');
+                $('#description').val('');
+            });
 
             $('.form').on("submit", function(e) {
                 e.preventDefault();
 
                 var token = $('meta[name="csrf-token"]').attr('content');
 
+                var url = "{{ url('album/') }}";
+                if ($('#id').val()) {
+                    url += `/` + $('#id').val();
+                }
+
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('album/') }}",
+                    url: url,
                     data: {
                         name: $('#name').val(),
                         description: $('#description').val(),
@@ -154,10 +166,48 @@
                     },
                     error: function(xhr, status, error) {
                         alert(xhr.responseJSON);
-                        // console.log("Terjadi error:", xhr);
                     }
                 })
             });
+
+            $('#main-section').on('click', '[data-element="btn_edit"]', function() {
+            var id = $(this).data('value');
+            $('#crud-modal h3').text('Edit Album');
+
+
+            $.ajax({
+                url: `{{ url('album/${id}') }}`,
+                type: "GET",
+                dataType: "Json",
+            }).done(function(response) {
+                $('#id').val(`${response.data.id}`);
+                $('#name').val(`${response.data.name}`);
+                $('#description').val(response.data.description? `${response.data.description}`: `` )
+            }).catch(error => {
+                console.log(error);
+            });
+        });
+
+            $('#main-section').on('click', 'button[data-element=btn_delete]', function(e) {
+                var _selectedID = $(this).data('value');
+                var title = $(this).data('title');
+
+                if (confirm(`Anda yakin ingin menghapus album ${title}?`)) {
+        $.ajax({
+            url: "{{ url('album') }}/" + _selectedID,
+            method: "delete",
+            data: {
+                _token: "{{ csrf_token() }}"
+            }
+        }).done(function (response) {
+            alert(response.message);
+            loadCards();
+        }).fail(function (error) {
+            alert(`Error: ${error.statusText}`);
+        });
+    }
+
+                });
 
             function loadCards() {
                 $.ajax({
@@ -170,26 +220,34 @@
 
                             response.data.forEach(function(card) {
                                 var cardHtml = `
-                        <div class="w-36 max-h-52 md:w-44 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
-                            <a href="#">
-                                <img class="rounded-t-lg w-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4sYLadZlYBjysS4PHq5-8p-EQHj9qeYxxQ&s" alt="" />
-                            </a>
-                            <div class="p-2">
-                                <a href="#">
-                                    <h5 class="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">${card.name}</h5>
-                                </a>
-                                <a href="#" class="inline-flex items-end text-xs font-medium text-end text-black me-0 mt-auto">
-                                    See more
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                                //             // Menambahkan card baru ke dalam container
+                                    <div class="w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
+                                        <a href="#">
+                                            <img class="rounded-t-lg w-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4sYLadZlYBjysS4PHq5-8p-EQHj9qeYxxQ&s" alt="" />
+                                        </a>
+                                        <div class="p-2 grid grid-cols-2">
+                                            <div>
+                                            <a href="#">
+                                                <span class="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">${card.title}</span>
+                                            </a>
+                                            </div>
+                                            <div class="flex justify-end">
+                                            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="inline-flex items-end text-xs font-medium text-end text-black  mt-auto pr-1" data-element="btn_edit" data-value="${card.id}" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                                    <path d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z" />
+                                                    <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z" />
+                                                </svg>
+                                            </button>
+                                            <button class="inline-flex items-end text-xs font-medium text-end text-black  mt-auto" data-element="btn_delete" data-value="${card.id}" data-title="${card.title}">
+                                                <svg class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path fill-rule="evenodd" d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
                                 cardContainer.append(cardHtml);
+                                initFlowbite();
                             });
                         } else {
                             console.log("No cards available or error with data.");
