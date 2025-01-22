@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('user_id');
+            $table->foreignUuid('user_id');
             $table->string('title');
             $table->text('description');
             $table->timestamps();

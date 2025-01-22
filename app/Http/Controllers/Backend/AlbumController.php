@@ -50,6 +50,23 @@ class AlbumController extends Controller
         }
     }
 
+    public function get_options(){
+        try {
+            $user = Auth::user();
+
+            $data = Album::where('user_id', $user->id)->orderBy('title', 'desc')->get(['id', 'title']);
+
+            $resData= [
+                'data' => $data,
+                'message' => "Successfuly get Data"
+            ];
+
+            return response()->json($resData, 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", $e);
+        }
+    }
+
     public function store(Request $request){
         try {
             $validator = Validator::make($request->post(), [
