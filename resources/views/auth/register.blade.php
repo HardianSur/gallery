@@ -25,7 +25,7 @@
                         class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Create account
                     </h1>
-                    <form class="space-y-4 md:space-y-6 grid" action="#">
+                    <form class="space-y-4 md:space-y-6 grid form" >
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name"
@@ -95,7 +95,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('auth/login') }}",
+                    url: "{{ url('auth/register') }}",
                     data: {
                         username: $('#username').val(),
                         name: $('#name').val(),

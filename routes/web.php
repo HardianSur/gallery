@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\PhotoController;
+use App\Http\Controllers\Backend\PhotoDetailController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +43,12 @@ Route::middleware("auth")->group(function () {
         Route::post('/', [PhotoController::class, 'store']);
         Route::post('/{id}', [PhotoController::class, 'update']);
         Route::delete('/{id}', [PhotoController::class, 'destroy']);
+
+        Route::post('/like/{id}', [PhotoController::class, 'likeOrUnlike']);
+
+        Route::prefix('detail')->group(function(){
+            Route::get('/{id}', [PhotoDetailController::class, 'index']);
+        });
+
     });
 });

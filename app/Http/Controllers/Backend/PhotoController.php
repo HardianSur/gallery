@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Like;
 use App\Models\Photo;
 use Exception;
 use Illuminate\Http\Request;
@@ -159,6 +160,28 @@ class PhotoController extends Controller
             $data->delete();
 
             return response()->json(['message'=>'Photo Berhasil Dihapus'], 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
+        }
+    }
+
+    public function likeOrUnlike(Request $request, $id){
+        try {
+            $user = Auth::user();
+
+            $checkLike = Like::where('user_id', $user->id)->where('photo_id', $id)->first();
+
+            if ($checkLike) {
+                $checkLike->delete();
+                return response()->json(['message'=>'unliked'], 200);
+            }else{
+                $data = new Like;
+                $data->user_id = $user->id;
+                $data->photo_id = $id;
+                $data->save();
+                return response()->json(['message'=>'liked'], 200);
+            }
+
         } catch (Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);
         }

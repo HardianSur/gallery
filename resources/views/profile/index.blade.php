@@ -69,7 +69,7 @@
             <div id="photo-section">
                 <div class="grid grid-cols-2 gap-2 mx-6 mb-3 max-w-fit">
                     <div>
-                        <button class="bg-gray-800 rounded-lg py-1 px-2 text-sm text-white font-medium">Filter</button>
+                        <button class="bg-gray-800 rounded-lg py-1 px-2 text-sm text-white font-medium ">Filter</button>
                     </div>
                     <div>
                         <button data-modal-target="photo-modal" data-modal-toggle="photo-modal" data-value="add-photo"
@@ -287,9 +287,9 @@
 
                             response.data.forEach(function(card) {
                                 var cardHtml = `
-                                    <div class="w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
+                                    <div class="w-max-sm w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
                                         <a href="#">
-                                            <img class="rounded-t-lg w-full w-max-48" src="{{ url('storage/${card.path}') }}" alt="${card.title}" />
+                                            <img class="rounded-t-lg w-full max-h-40" src="{{ url('storage/${card.path}') }}" alt="${card.title}" />
                                         </a>
                                         <div class="p-2 grid grid-cols-2">
                                             <div>

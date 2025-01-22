@@ -53,4 +53,16 @@ public $incrementing = false;
     public function photo(){
         return $this->hasMany(Photo::class, 'user_id', 'id');
     }
+
+    public function album(){
+        return $this->hasMany(Album::class, 'user_id', 'id');
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function like(){
+        return $this->hasMany(Like::class, 'user_id', 'id');
+    }
 }

@@ -20,4 +20,8 @@ class Photo extends Model
     public function like(){
         return $this->hasMany(Like::class, 'photo_id', 'id');
     }
+
+    public function comment(){
+        return $this->hasMany(Comment::class, 'photo_id', 'id');
+    }
 }
