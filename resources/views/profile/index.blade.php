@@ -367,7 +367,7 @@
                 formData.append('title', $('#photo-title').val());
                 formData.append('description', $('#photo-description').val());
                 formData.append('album', $('#album').val());
-                formData.append('image', $('#image')[0].files[0]);
+                formData.append('image', $('#image')[0].files[0] ? $('#image')[0].files[0] : "");
                 formData.append('_token',token);
 
                 $.ajax({
@@ -412,7 +412,7 @@
 
             $('#photo-section').on('click', '[data-element="btn_edit"]', function() {
                 var id = $(this).data('value');
-                $('#photo-modal h3').text('Edit Album');
+                $('#photo-modal h3').text('Edit Photo');
                 $('#id').val('');
                     $('#photo-title').val('');
                     $('#photo-description').val('');

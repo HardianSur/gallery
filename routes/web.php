@@ -35,11 +35,12 @@ Route::middleware("auth")->group(function () {
     });
     Route::prefix('photo')->group(function(){
         // Route::get('/', [AlbumController::class, 'index']);
+        Route::get('/retrieve', [PhotoController::class, 'retrieve']);
         Route::get('/retrieve_by_user', [PhotoController::class, 'retrieve_by_user']);
         Route::get('/retrieve/{id}', [PhotoController::class, 'retrieve_by_id']);
         // Route::get('/get_options', [AlbumController::class, 'get_options']);
         Route::post('/', [PhotoController::class, 'store']);
-        Route::post('/{id}', [AlbumController::class, 'update']);
+        Route::post('/{id}', [PhotoController::class, 'update']);
         Route::delete('/{id}', [PhotoController::class, 'destroy']);
     });
 });

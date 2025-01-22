@@ -9,7 +9,15 @@ class Photo extends Model
 {
     use HasUuids;
     protected $keyType = 'string';
-public $incrementing = false;
+    public $incrementing = false;
 
     protected $guarded = ['id'];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function like(){
+        return $this->hasMany(Like::class, 'photo_id', 'id');
+    }
 }

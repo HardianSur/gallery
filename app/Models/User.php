@@ -49,4 +49,8 @@ public $incrementing = false;
             'password' => 'hashed',
         ];
     }
+
+    public function photo(){
+        return $this->hasMany(Photo::class, 'user_id', 'id');
+    }
 }

@@ -53,7 +53,7 @@ class PhotoController extends Controller
     public function update(Request $request,$id){
         try {
             $validator = Validator::make($request->all(), [
-                'image' => 'required|mimes:png,jpg,jpeg',
+                'image' => 'nullable|mimes:png,jpg,jpeg',
                 'title' => 'required|string',
                 'description'=> 'required|string',
                 'album'=> 'required|exists:albums,id'
@@ -65,7 +65,7 @@ class PhotoController extends Controller
 
             $user = Auth::user();
 
-            $data = Photo::find($id)->first();
+            $data = Photo::find($id);
 
             $data->title = $request->post('title');
             $data->description = $request->post('description');
@@ -82,6 +82,36 @@ class PhotoController extends Controller
         } catch (Exception $e) {
             return response()->json('Internal Server Error', 500);
             Log::error("Internal Server Error", [$e->getMessage()]);
+        }
+    }
+
+    public function retrieve(){
+        try {
+            $user = Auth::user();
+            $data = Photo::with(['user'=>function($q){
+                $q->select(['id','username', 'photo']);
+            }, 'like'=>function($q){
+                $q->select(['id','user_id', 'photo_id']);
+            }])->latest()->get();
+
+            $data = $data->map(function($item) use($user) {
+                $item->like_total = $item->like->count();
+                $item->liked = $item->like->contains('user_id', $user->id) ? true : null;
+
+                $item->created = $item->created_at->diffForHumans();
+                unset($item->like);
+                return $item;
+            });
+
+            $resData= [
+                'data' => $data,
+                'message' => "Successfuly get Data"
+            ];
+
+
+            return response()->json($resData, 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", $e);
         }
     }
 
@@ -104,7 +134,7 @@ class PhotoController extends Controller
 
     public function retrieve_by_id($id){
         try {
-            $data = Photo::find($id)->first();
+            $data = Photo::find($id);
             $resData= [
                 'data' => $data,
                 'message' => "Successfuly get Data"
