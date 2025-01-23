@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Photo;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class PhotoDetailController extends Controller
 {
@@ -22,6 +26,52 @@ class PhotoDetailController extends Controller
         $data->liked = $data->like->contains('user_id', $user->id) ? true : null;
         $data->created = $data->created_at->diffForHumans();
 
-        return view('photo.index', [$data]);
+        unset($data->like);
+
+        return view('photo.index', compact("data"));
+    }
+
+    public function storeComment(Request $request, $id){
+        try {
+            $validator = Validator::make($request->post(), [
+                'content'=> 'required|string',
+                'reply' => 'nullable|string'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+
+            $user = Auth::user();
+
+            $data = new Comment;
+            $data->content = $request->post('content');
+            $data->head_id = $request->post('reply') ?? null ;
+            $data->user_id = $user->id;
+            $data->photo_id = $id;
+            $data->save();
+
+            return response()->json('Album Berhasil Dibuat', 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
+        }
+    }
+
+    public function retrieveComment($id){
+        try {
+            $data = Comment::with(['reply.user'=>function($q){
+                $q->select(['id', 'username', 'photo']);
+            }, 'user'=>function($q){
+                $q->select(['id', 'username', 'photo']);
+            }])->where('photo_id', $id)->whereNull('head_id')->latest()->get();
+            $resData= [
+                'data' => $data,
+                'message' => "Successfuly get Data"
+            ];
+
+            return response()->json($resData, 200);
+        } catch (Exception $e) {
+            Log::error("Internal Server Error", $e);
+        }
     }
 }

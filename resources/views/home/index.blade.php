@@ -63,7 +63,7 @@
                         }
 
                             var card = `
-                            <div class=" bg-white rounded-lg shadow-lg overflow-hidden max-w-xs w-full">
+                            <div class=" bg-white rounded-lg shadow-lg overflow-hidden max-w-xs w-full group cursor-pointer transform duration-500 hover:-translate-y-1">
                                 <img src="{{ url('storage') }}/${data.path}" alt="image ${data.title}" class="w-full h-64 object-cover">
                                 <div class="flex justify-start  items-center gap-2 mt-2 mx-4">
                                     <div class="flex items-center">
@@ -110,8 +110,6 @@
         }
 
         $('#main-section').on('click', '#like-button', function() {
-            console.log('hai');
-
             var id = $(this).data('value');
             var svg = $(this).find('svg');
             var likeCountSpan = $(this).siblings('#like-count');
@@ -140,7 +138,7 @@
                 alert(xhr.responseJSON);
                 console.log("Terjadi error:", xhr);
             }
-        })
+            });
         });
     });
 </script>

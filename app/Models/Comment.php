@@ -15,8 +15,13 @@ class Comment extends Model
     public function photo(){
         return $this->belongsTo(Photo::class, 'photo_id', 'id');
     }
+
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function reply(){
+        return $this->hasMany(Comment::class, 'head_id');
     }
 
 }

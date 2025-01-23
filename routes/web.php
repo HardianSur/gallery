@@ -48,6 +48,8 @@ Route::middleware("auth")->group(function () {
 
         Route::prefix('detail')->group(function(){
             Route::get('/{id}', [PhotoDetailController::class, 'index']);
+            Route::get('/comment/{id}', [PhotoDetailController::class, 'retrieveComment']);
+            Route::post('/comment/{id}', [PhotoDetailController::class, 'storeComment']);
         });
 
     });
