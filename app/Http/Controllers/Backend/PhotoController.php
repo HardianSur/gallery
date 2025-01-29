@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Events\NewLikeNotification;
 use App\Http\Controllers\Controller;
 use App\Models\Like;
 use App\Models\Photo;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NewLikeNotification as LikeNotification ;
 
 class PhotoController extends Controller
 {
@@ -90,7 +92,7 @@ class PhotoController extends Controller
         try {
             $user = Auth::user();
             $data = Photo::with(['user'=>function($q){
-                $q->select(['id','username', 'photo']);
+                $q->select(['id','username', 'avatar']);
             }, 'like'=>function($q){
                 $q->select(['id','user_id', 'photo_id']);
             }])->latest()->get();
@@ -112,7 +114,7 @@ class PhotoController extends Controller
 
             return response()->json($resData, 200);
         } catch (Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 
@@ -168,7 +170,7 @@ class PhotoController extends Controller
     public function likeOrUnlike(Request $request, $id){
         try {
             $user = Auth::user();
-
+            $photo = Photo::findOrFail($id);
             $checkLike = Like::where('user_id', $user->id)->where('photo_id', $id)->first();
 
             if ($checkLike) {
@@ -179,6 +181,22 @@ class PhotoController extends Controller
                 $data->user_id = $user->id;
                 $data->photo_id = $id;
                 $data->save();
+
+                $photoOwner = $photo->user;
+                if ($photoOwner->id !== $user->id) {
+                    // Store notification in database
+                    $photoOwner->notify(new LikeNotification($user, $photo));
+
+                    // Get updated count and broadcast
+                    $unreadCount = $photoOwner->unreadNotifications->count();
+                    $message = $user->name . ' liked your photo';
+
+                    event(new NewLikeNotification(
+                        $photoOwner->id,
+                        $unreadCount,
+                        $message
+                    ));
+                }
                 return response()->json(['message'=>'liked'], 200);
             }
 

@@ -68,4 +68,10 @@ public $incrementing = false;
     public function like(){
         return $this->hasMany(Like::class, 'user_id', 'id');
     }
+
+    public function notifications()
+    {
+        return $this->morphMany(\Illuminate\Notifications\DatabaseNotification::class, 'notifiable')
+                    ->orderBy('created_at', 'desc');
+    }
 }

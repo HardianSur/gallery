@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Backend\PhotoController;
 use App\Http\Controllers\Backend\PhotoDetailController;
 use App\Http\Controllers\Backend\UserController;
@@ -48,5 +49,9 @@ Route::middleware("auth")->group(function () {
             Route::post('/comment/{id}', [PhotoDetailController::class, 'storeComment']);
         });
 
+    });
+
+    Route::prefix('notification')->group(function(){
+        Route::get('/', [NotificationController::class,'index']);
     });
 });

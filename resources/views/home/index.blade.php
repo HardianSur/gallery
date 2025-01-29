@@ -45,6 +45,7 @@
 
 <script>
     $(document).ready(function() {
+
         retrievePhoto();
 
         function retrievePhoto(){
