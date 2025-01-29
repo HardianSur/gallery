@@ -25,6 +25,9 @@ public $incrementing = false;
         'name',
         'email',
         'password',
+        'avatar',
+        'username',
+        'address'
     ];
 
     /**

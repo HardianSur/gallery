@@ -1,9 +1,9 @@
-{{-- @dd($data->id) --}}
+{{-- @dd($data->liked) --}}
 @extends('components.main')
 
 @section('container')
     <section class="container mx-auto p-10 md:p-20 antialiased ">
-        <article class=" flex flex-wrap md:flex-nowrap shadow-lg mx-auto max-w-7xl">
+        <article class=" flex flex-wrap md:flex-nowrap shadow-lg mx-auto max-w-7xl" id="main-section">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16 p-4">
                 <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
                     <img class="w-full dark:hidden" src="{{ url("storage/$data->path") }}" alt="" />
@@ -38,7 +38,7 @@
                                 class="flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor"
-                                    class="size-6 hover:fill-red-600 hover:stroke-red-600">
+                                    class="size-6 {{ $data->liked != null ? 'fill-red-600 stroke-red-600' : 'hover:fill-red-600 hover:stroke-red-600'}}">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                                 </svg>
@@ -147,7 +147,6 @@
                 },
                 error: function(xhr, status, error) {
                     $('#comment').val('')
-                    alert(xhr.responseJSON);
                     console.log("Terjadi error:", xhr);
                 }
                 });
@@ -164,6 +163,8 @@
                     commentContainer.empty();
 
                     response.data.forEach(function(data) {
+                        console.log(data);
+
                     var replyHTML = ``;
 
                     if (data.reply) {
@@ -171,7 +172,7 @@
                         <div class="p-3 bg-gray-100 rounded-lg">
                             <div>
                                 <p class="font-semibold">${r.user.username}</p>
-                                <p class="text-sm text-gray-500">${r.created_at}</p>
+                                <p class="text-sm text-gray-500">${r.created}</p>
                             </div>
                             <p class="mt-1 text-gray-700">${r.content}</p>
                         </div>
@@ -183,7 +184,7 @@
                                         <div class="flex items-center justify-between">
                                             <div>
                                             <p class="font-semibold">${data.user.username}</p>
-                                            <p class="text-sm text-gray-500">2 hours ago</p>
+                                            <p class="text-sm text-gray-500">${data.created}</p>
                                             </div>
                                         </div>
                                         <p class="mt-2 text-gray-700">${data.content}</p>
@@ -212,11 +213,42 @@
                     });
                 },
                 error: function(xhr, status, error) {
-                    alert(xhr.responseJSON);
                     console.log("Terjadi error:", xhr);
                 }
                 });
             }
+
+            $('#main-section').on('click', '#like-button', function() {
+            var id = $(this).data('value');
+            var svg = $(this).find('svg');
+            var likeCountSpan = $('#like-count');
+
+            var token = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+            type: "POST",
+            url: `{{ url('photo/like') }}/${id}`,
+            data: {
+                _token: token
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+
+                if (response.message === "liked") {
+                    svg.removeClass("hover:fill-red-600 hover:stroke-red-600").addClass("fill-red-600 stroke-red-600");
+                    likeCountSpan.text(parseInt(likeCountSpan.text()) + 1);
+                } else if (response.message === "unliked") {
+                    svg.removeClass("fill-red-600 stroke-red-600").addClass("hover:fill-red-600 hover:stroke-red-600");
+                    likeCountSpan.text(parseInt(likeCountSpan.text()) - 1);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(xhr.responseJSON);
+                console.log("Terjadi error:", xhr);
+            }
+            });
+        });
 
             $('#comment-section').on('click', '.reply-btn', function() {
                 var commentId = $(this).data('id');

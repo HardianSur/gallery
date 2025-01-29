@@ -7,39 +7,58 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function update(Request $request, $id){
         try {
-            $validator = Validator::make($request->post(), [
+            $validator = Validator::make($request->all(), [
+                'avatar' => 'nullable|mimes:png,jpg,jpeg',
                 'name' => 'required|string',
-                'username'=> 'required|string|unique:users,username',
+                'username'=> 'required|string|unique:users,username,'. $id,
                 'email'=> 'required|email',
-                'alamat'=> 'string'
+                'address'=> 'string'
             ]);
 
             if ($validator->fails()) {
-                return response()->json($validator->errors());
+                return response()->json($validator->errors(), 400);
             }
 
             $user = Auth::user();
 
             if (!$user->id == $id) {
-                return response()->json('Id tidak balid', 400);
+                return response()->json(['message'=>'Id is invalid'], 400);
             }
 
-            $data = User::find($id);
-            $data->name = $request->post('name');
-            $data->username = $request->post('username');
-            $data->email = $request->post('email');
-            $data->alamat = $request->post('alamat');
-            $data->save();
+            if ($request->hasFile('avatar')) {
+                if ($user->avatar) {
+                    Storage::delete($user->avatar);
+                }
 
-            return response()->json('Berhasil Di Update', 200);
+                $path = $request->file('avatar')->store('avatars', 'public');
+                $user->avatar = $path;
+            }
+            $user->fill($request->only([
+                'name',
+                'username',
+                'email',
+                'address'
+            ]));
+
+            $user->save();
+            return response()->json(['message'=>'Berhasil Di Update'], 200);
         } catch (\Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage(), $e->getCode()]);
+        }
+    }
+
+    public function notification(){
+        try {
+
+        } catch (\Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage(), $e->getCode()]);
         }
     }
 }

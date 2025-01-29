@@ -19,11 +19,13 @@ class PhotoDetailController extends Controller
         $data =  $data = Photo::with(['user' => function ($q) {
             $q->select(['id', 'username', 'photo']);
         }, 'like' => function ($q) {
-            $q->select(['id','photo_id']);
+            $q->select(['id','photo_id', 'user_id']);
         }])->find($id);
 
         $data->like_total = $data->like->count();
-        $data->liked = $data->like->contains('user_id', $user->id) ? true : null;
+        $data->liked = $data->like->contains('user_id', $user->id);
+
+        // dd($data);
         $data->created = $data->created_at->diffForHumans();
 
         unset($data->like);
@@ -64,6 +66,17 @@ class PhotoDetailController extends Controller
             }, 'user'=>function($q){
                 $q->select(['id', 'username', 'photo']);
             }])->where('photo_id', $id)->whereNull('head_id')->latest()->get();
+            $data = $data->map(function($item)  {
+
+                $item->created = $item->created_at->diffForHumans();
+                if ($item->reply && $item->reply->isNotEmpty()) {
+                    $item->reply->map(function ($reply) {
+                        $reply->created = $reply->created_at ? $reply->created_at->diffForHumans() : null;
+                        return $reply;
+                    });
+                }
+                return $item;
+            });
             $resData= [
                 'data' => $data,
                 'message' => "Successfuly get Data"
@@ -71,7 +84,8 @@ class PhotoDetailController extends Controller
 
             return response()->json($resData, 200);
         } catch (Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage()]);
+            return response()->json(['message'=> "Internal Server Error"], 500);
         }
     }
 }

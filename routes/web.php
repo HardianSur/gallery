@@ -19,10 +19,6 @@ Route::prefix('/auth')->group(function () {
 Route::middleware("auth")->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::prefix('/profile')->group(function(){
-        Route::get('/', function(){
-            return view('profile.index');
-        });
-
         Route::put('/{id}', [UserController::class, 'update']);
     });
     Route::prefix('album')->group(function(){
