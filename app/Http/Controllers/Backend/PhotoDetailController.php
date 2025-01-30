@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Events\NewLikeNotification;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Photo;
+use App\Notifications\NewCommentNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +19,7 @@ class PhotoDetailController extends Controller
         $user = Auth::user();
 
         $data =  $data = Photo::with(['user' => function ($q) {
-            $q->select(['id', 'username', 'photo']);
+            $q->select(['id', 'username', 'avatar']);
         }, 'like' => function ($q) {
             $q->select(['id','photo_id', 'user_id']);
         }])->find($id);
@@ -53,6 +55,23 @@ class PhotoDetailController extends Controller
             $data->photo_id = $id;
             $data->save();
 
+            $photo = Photo::find($id);
+            $photoOwner = $photo->user;
+                if ($photoOwner->id !== $user->id) {
+                    // Store notification in database
+                    $photoOwner->notify(new NewCommentNotification($user, $photo));
+
+                    // Get updated count and broadcast
+                    $unreadCount = $photoOwner->unreadNotifications->count();
+                    $message = $user->name . ' comment on your photo';
+
+                    event(new NewLikeNotification(
+                        $photoOwner->id,
+                        $unreadCount,
+                        $message
+                    ));
+                }
+
             return response()->json('Album Berhasil Dibuat', 200);
         } catch (Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);
@@ -62,9 +81,9 @@ class PhotoDetailController extends Controller
     public function retrieveComment($id){
         try {
             $data = Comment::with(['reply.user'=>function($q){
-                $q->select(['id', 'username', 'photo']);
+                $q->select(['id', 'username', 'avatar']);
             }, 'user'=>function($q){
-                $q->select(['id', 'username', 'photo']);
+                $q->select(['id', 'username', 'avatar']);
             }])->where('photo_id', $id)->whereNull('head_id')->latest()->get();
             $data = $data->map(function($item)  {
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\RegistrationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,13 +47,39 @@ class AuthController extends Controller
         }
     }
 
+    public function pendingRegistration(Request $request){
+        $validator = Validator::make($request->post(), [
+            'name' => 'required|string',
+            'username' => 'required|string|unique:users,username|unique:registration_requests,username',
+            'email' => 'required|email|unique:users,email|unique:registration_requests,email',
+            'password'=> 'required|confirmed',
+            'alamat'=> 'string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $data = new RegistrationRequest;
+        $data->name = $request->post('name');
+        $data->username = $request->post('username');
+        $data->email = $request->post('email');
+        $data->password = bcrypt($request->post('password'));
+        $data->address = $request->post('alamat');
+        $data->save();
+
+        return response()->json([
+            'message' => 'Registration successful! Please wait for admin approval',
+        ], 200);
+    }
+
     public function registerProcess(Request $request){
         try {
 
             $validator = Validator::make($request->post(), [
                 'name' => 'required|string',
-                'username'=> 'required|string|unique:users,username',
-                'email'=> 'required|email',
+                'username' => 'required|string|unique:users,username|unique:registration_requests,username',
+                'email' => 'required|email|unique:users,email|unique:registration_requests,email',
                 'password'=> 'required|confirmed',
                 'alamat'=> 'string'
             ]);
@@ -66,12 +93,14 @@ class AuthController extends Controller
             $data->username = $request->post('username');
             $data->email = $request->post('email');
             $data->password = bcrypt($request->post('password'));
-            $data->alamat = $request->post('alamat');
+            $data->address = $request->post('alamat');
             $data->save();
 
             return response()->json('Register berhasil', 200);
         } catch (\Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);
+            return response()->json('Internal Server Error', 500);
+
         }
     }
 

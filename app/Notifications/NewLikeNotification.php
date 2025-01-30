@@ -22,7 +22,6 @@ class NewLikeNotification extends Notification
 
     public function __construct($liker, $photo)
     {
-        Log::info('hai');
         $this->liker = $liker;
         $this->photo = $photo;
     }
@@ -34,7 +33,6 @@ class NewLikeNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        Log::info('Via method executed');
         return ['database'];
     }
 
@@ -43,13 +41,12 @@ class NewLikeNotification extends Notification
      */
     public function toDatabase(object $notifiable): array
     {
-        Log::info('hoi');
-
         return [
             'message' => $this->liker->name . ' liked your photo',
             'liker_id' => $this->liker->id,
             'photo_id' => $this->photo->id,
             'photo_title' => $this->photo->title ?? 'Photo',
+            'type'=> 'like',
             'time' => now()
         ];
     }

@@ -74,4 +74,8 @@ public $incrementing = false;
         return $this->morphMany(\Illuminate\Notifications\DatabaseNotification::class, 'notifiable')
                     ->orderBy('created_at', 'desc');
     }
+
+    public function role(){
+        return $this->belongsTo(Role::class,'role_id', 'id');
+    }
 }

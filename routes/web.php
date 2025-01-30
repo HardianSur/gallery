@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AlbumController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\HomeController;
@@ -12,17 +13,28 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/auth')->group(function () {
     Route::get('signin', [AuthController::class, 'index'])->name("login")->middleware("guest");
     Route::get('register', [AuthController::class, 'register'])->middleware("guest");
-    Route::post('register', [AuthController::class, 'registerProcess'])->middleware("guest");
+    Route::post('register', [AuthController::class, 'pendingRegistration'])->middleware("guest");
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout'])->middleware("auth");
 });
 
 Route::middleware("auth")->group(function () {
+    Route::middleware("admin")->group(function () {
+        Route::prefix("admin")->group(function () {
+            Route::get("/", [AdminController::class, 'index']);
+        });
+    });
+
     Route::get('/', [HomeController::class, 'index']);
-    Route::prefix('/profile')->group(function(){
+
+    Route::prefix('/profile')->group(function () {
+        Route::get('/', function () {
+            return view('profile.index');
+        });
         Route::put('/{id}', [UserController::class, 'update']);
     });
-    Route::prefix('album')->group(function(){
+
+    Route::prefix('album')->group(function () {
         Route::get('/', [AlbumController::class, 'index']);
         Route::get('/retrieve', [AlbumController::class, 'retrieve']);
         Route::get('/retrieve/{id}', [AlbumController::class, 'retrieve_by_id']);
@@ -31,7 +43,8 @@ Route::middleware("auth")->group(function () {
         Route::post('/{id}', [AlbumController::class, 'update']);
         Route::delete('/{id}', [AlbumController::class, 'destroy']);
     });
-    Route::prefix('photo')->group(function(){
+
+    Route::prefix('photo')->group(function () {
         // Route::get('/', [AlbumController::class, 'index']);
         Route::get('/retrieve', [PhotoController::class, 'retrieve']);
         Route::get('/retrieve_by_user', [PhotoController::class, 'retrieve_by_user']);
@@ -43,7 +56,7 @@ Route::middleware("auth")->group(function () {
 
         Route::post('/like/{id}', [PhotoController::class, 'likeOrUnlike']);
 
-        Route::prefix('detail')->group(function(){
+        Route::prefix('detail')->group(function () {
             Route::get('/{id}', [PhotoDetailController::class, 'index']);
             Route::get('/comment/{id}', [PhotoDetailController::class, 'retrieveComment']);
             Route::post('/comment/{id}', [PhotoDetailController::class, 'storeComment']);
@@ -51,7 +64,7 @@ Route::middleware("auth")->group(function () {
 
     });
 
-    Route::prefix('notification')->group(function(){
-        Route::get('/', [NotificationController::class,'index']);
+    Route::prefix('notification')->group(function () {
+        Route::get('/', [NotificationController::class, 'index']);
     });
 });
