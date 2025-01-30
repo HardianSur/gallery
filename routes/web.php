@@ -22,6 +22,7 @@ Route::middleware("auth")->group(function () {
     Route::middleware("admin")->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/", [AdminController::class, 'index']);
+            Route::post("/{id}", [AdminController::class, 'processRegister']);
         });
     });
 
