@@ -20,7 +20,10 @@ class AlbumController extends Controller
         try {
             $user = Auth::user();
 
-            $data = Album::where('user_id', $user->id)->latest()->get();
+            $data = Album::with('latestPhoto:id,album_id,path')
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
 
             $resData= [
                 'data' => $data,
@@ -29,7 +32,7 @@ class AlbumController extends Controller
 
             return response()->json($resData, 200);
         } catch (Exception $e) {
-            Log::error("Internal Server Error", $e);
+            Log::error("Internal Server Error", [$e->getMessage()]);
         }
     }
 

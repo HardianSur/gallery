@@ -1,0 +1,162 @@
+[
+    {
+      "name": "Anthony Santos",
+      "username": "ElGasing",
+      "address": "Andalusia",
+      "email": "budisantoso@example.com",
+      "avatar": "https://cms.disway.id/uploads/118cf42be084076b9e0bcd6044d47b73.png",
+      "password": "password"
+    },
+    {
+      "name": "Siti Aminah",
+      "username": "sitiaminah",
+      "address": "Jl. Sudirman No. 21, Bandung",
+      "email": "sitiaminah@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=2",
+      "password": "password"
+    },
+    {
+      "name": "Agus Pratama",
+      "username": "aguspratama",
+      "address": "Jl. Diponegoro No. 15, Surabaya",
+      "email": "aguspratama@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=3",
+      "password": "password"
+    },
+    {
+      "name": "Dewi Lestari",
+      "username": "dewilestari",
+      "address": "Jl. Gatot Subroto No. 5, Medan",
+      "email": "dewilestari@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=4",
+      "password": "password"
+    },
+    {
+      "name": "Rizky Hidayat",
+      "username": "rizkyhidayat",
+      "address": "Jl. Malioboro No. 30, Yogyakarta",
+      "email": "rizkyhidayat@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=5",
+      "password": "password"
+    },
+    {
+      "name": "Fitri Handayani",
+      "username": "fitrihandayani",
+      "address": "Jl. Pemuda No. 8, Semarang",
+      "email": "fitrihandayani@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=6",
+      "password": "password"
+    },
+    {
+      "name": "Eko Saputra",
+      "username": "ekosaputra",
+      "address": "Jl. Asia Afrika No. 12, Palembang",
+      "email": "ekosaputra@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=7",
+      "password": "password"
+    },
+    {
+      "name": "Nur Aisyah",
+      "username": "nuraisyah",
+      "address": "Jl. Ahmad Yani No. 17, Makassar",
+      "email": "nuraisyah@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=8",
+      "password": "password"
+    },
+    {
+      "name": "Dian Permana",
+      "username": "dianpermana",
+      "address": "Jl. Thamrin No. 25, Balikpapan",
+      "email": "dianpermana@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=9",
+      "password": "password"
+    },
+    {
+      "name": "Hendra Wijaya",
+      "username": "hendrawijaya",
+      "address": "Jl. Pahlawan No. 33, Malang",
+      "email": "hendrawijaya@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=10",
+      "password": "password"
+    },
+    {
+      "name": "Yulia Sari",
+      "username": "yuliasari",
+      "address": "Jl. Veteran No. 44, Bogor",
+      "email": "yuliasari@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=11",
+      "password": "password"
+    },
+    {
+      "name": "Anton Suryadi",
+      "username": "antonsuryadi",
+      "address": "Jl. Ahmad Dahlan No. 9, Pekanbaru",
+      "email": "antonsuryadi@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "password": "password"
+    },
+    {
+      "name": "Indah Pertiwi",
+      "username": "indahpertiwi",
+      "address": "Jl. Sisingamangaraja No. 22, Denpasar",
+      "email": "indahpertiwi@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=13",
+      "password": "password"
+    },
+    {
+      "name": "Fajar Maulana",
+      "username": "fajarmaulana",
+      "address": "Jl. Cendrawasih No. 14, Pontianak",
+      "email": "fajarmaulana@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=14",
+      "password": "password"
+    },
+    {
+      "name": "Sri Hartati",
+      "username": "srihartati",
+      "address": "Jl. Gajah Mada No. 7, Manado",
+      "email": "srihartati@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=15",
+      "password": "password"
+    },
+    {
+      "name": "Arif Rahman",
+      "username": "arifrahman",
+      "address": "Jl. Teuku Umar No. 18, Palu",
+      "email": "arifrahman@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=16",
+      "password": "password"
+    },
+    {
+      "name": "Lisa Oktaviani",
+      "username": "lisaoktaviani",
+      "address": "Jl. Sultan Agung No. 20, Samarinda",
+      "email": "lisaoktaviani@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=17",
+      "password": "password"
+    },
+    {
+      "name": "Bayu Setiawan",
+      "username": "bayusetiawan",
+      "address": "Jl. Dr. Sutomo No. 11, Banjarmasin",
+      "email": "bayusetiawan@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=18",
+      "password": "password"
+    },
+    {
+      "name": "Rina Anggraini",
+      "username": "rinaanggraini",
+      "address": "Jl. K.H. Hasyim Ashari No. 16, Serang",
+      "email": "rinaanggraini@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=19",
+      "password": "password"
+    },
+    {
+      "name": "Denny Firmansyah",
+      "username": "dennyfirmansyah",
+      "address": "Jl. Imam Bonjol No. 28, Jambi",
+      "email": "dennyfirmansyah@example.com",
+      "avatar": "https://i.pravatar.cc/150?img=20",
+      "password": "password"
+    }
+  ]

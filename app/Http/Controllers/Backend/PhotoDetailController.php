@@ -85,6 +85,9 @@ class PhotoDetailController extends Controller
             }, 'user'=>function($q){
                 $q->select(['id', 'username', 'avatar']);
             }])->where('photo_id', $id)->whereNull('head_id')->latest()->get();
+
+            $comment_total = $data->count();
+
             $data = $data->map(function($item)  {
 
                 $item->created = $item->created_at->diffForHumans();
@@ -97,7 +100,7 @@ class PhotoDetailController extends Controller
                 return $item;
             });
             $resData= [
-                'data' => $data,
+                'data' => [$data,$comment_total],
                 'message' => "Successfuly get Data"
             ];
 

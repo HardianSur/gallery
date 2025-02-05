@@ -24,4 +24,8 @@ class Photo extends Model
     public function comment(){
         return $this->hasMany(Comment::class, 'photo_id', 'id');
     }
+
+    public function album(){
+        return $this->belongsTo(Album::class,'album_id', 'id');
+    }
 }

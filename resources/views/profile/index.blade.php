@@ -258,10 +258,11 @@
                             cardContainer.empty();
 
                             response.data.forEach(function(card) {
+
                                 var cardHtml = `
                                     <div class="w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
                                         <a href="#">
-                                            <img class="rounded-t-lg w-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB4sYLadZlYBjysS4PHq5-8p-EQHj9qeYxxQ&s" alt="" />
+                                            <img class="rounded-t-lg w-full max-h-28" src="${card.latest_photo ? '{{ url('storage/') }}/' + card.latest_photo.path : '{{ asset('asset/images/default-album.jpg') }}'}" alt="" />
                                         </a>
                                         <div class="p-2 grid grid-cols-2">
                                             <div>
@@ -312,12 +313,12 @@
                             response.data.forEach(function(card) {
                                 var cardHtml = `
                                     <div class="w-max-sm w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
-                                        <a href="#">
-                                            <img class="rounded-t-lg w-full max-h-40" src="{{ url('storage/${card.path}') }}" alt="${card.title}" />
+                                        <a href="{{ url('photo/detail') }}/${card.id}">
+                                            <img class="rounded-t-lg w-full max-h-28" src="{{ url('storage/${card.path}') }}" alt="${card.title}" />
                                         </a>
-                                        <div class="p-2 grid grid-cols-2">
+                                        <div class="p-2 grid grid-cols-2 content-end">
                                             <div>
-                                            <a href="#">
+                                            <a href="{{ url('photo/detail') }}/${card.id}">
                                                 <span class="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">${card.title}</span>
                                             </a>
                                             </div>

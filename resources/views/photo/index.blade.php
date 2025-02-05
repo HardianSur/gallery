@@ -24,7 +24,7 @@
                     <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
                         <div class="flex justify-between items-center w-full">
                             <div class="flex items-center">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar"
+                                <img src="{{ url("storage/".$data->user->avatar) }}" alt="Avatar"
                                     class="w-8 h-8 rounded-full mr-2 object-cover">
                                 <div class="flex flex-col">
 
@@ -53,7 +53,7 @@
 
                     <div class="max-w-2xl mx-auto px-4">
                         <div class="flex justify-between items-center mb-6">
-                            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+                            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (<span id="comment-counter"></span>)</h2>
                         </div>
                         <form class="mb-6 form-master">
                             <input type="hidden" name="id" id="id" value="{{ $data->id }}">
@@ -165,8 +165,9 @@
                         var commentContainer = $('#comment-section');
                         commentContainer.empty();
 
-                        response.data.forEach(function(data) {
-                            console.log(data);
+                        $('#comment-counter').text(response.data[1]);
+
+                        response.data[0].forEach(function(data) {
 
                             var replyHTML = ``;
 

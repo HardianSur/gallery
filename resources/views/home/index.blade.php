@@ -58,7 +58,7 @@
                                     </p> --}}
                                     <div class="flex justify-between items-center">
                                         <div class="flex items-center">
-                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar" class="w-6 h-6 rounded-full mr-2 object-cover">
+                                            <img src="${data.user.avatar ? '{{ url('storage/') }}/' + data.user.avatar : '{{ asset('asset/images/Default_pfp.svg') }}'}" alt="Avatar" class="w-6 h-6 rounded-full mr-2 object-cover">
                                             <span class="text-gray-800 font-semibold text-xs">${data.user.username}</span>
                                         </div>
                                         <span class="text-gray-600 text-xs">${data.created}</span>

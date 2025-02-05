@@ -9,14 +9,25 @@ class Album extends Model
 {
     use HasUuids;
     protected $keyType = 'string';
-public $incrementing = false;
+    public $incrementing = false;
     protected $fillable = [
         'title',
         'user_id',
         'description',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function photo()
+    {
+        $this->hasMany(Photo::class, 'album_id', 'id');
+    }
+
+    public function latestPhoto()
+    {
+        return $this->hasOne(Photo::class)->latest();
     }
 }
