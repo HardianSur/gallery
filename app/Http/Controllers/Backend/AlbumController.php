@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\Validator;
 class AlbumController extends Controller
 {
     public function index(){
-        return view('album.index');
+        $data = Album::with(['latestPhoto:id,album_id,path,created_at', 'user:id,username,avatar'])->inRandomOrder()->get();
+
+        // $data = $data->map(function($item)  {
+        //     $item->created = $item->latestPhoto->created_at->diffForHumans();
+        //     return $item;
+        // });
+
+        return view('album.index', compact('data'));
     }
 
     public function retrieve(){

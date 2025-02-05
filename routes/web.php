@@ -43,10 +43,16 @@ Route::middleware("auth")->group(function () {
         Route::post('/', [AlbumController::class, 'store']);
         Route::post('/{id}', [AlbumController::class, 'update']);
         Route::delete('/{id}', [AlbumController::class, 'destroy']);
+
+        Route::prefix('detail')->group(function () {
+            Route::get('/{id}', [PhotoDetailController::class, 'index']);
+            Route::get('/comment/{id}', [PhotoDetailController::class, 'retrieveComment']);
+            Route::post('/comment/{id}', [PhotoDetailController::class, 'storeComment']);
+        });
     });
 
     Route::prefix('photo')->group(function () {
-        // Route::get('/', [AlbumController::class, 'index']);
+        Route::get('/', [HomeController::class, 'index']);
         Route::get('/retrieve', [PhotoController::class, 'retrieve']);
         Route::get('/retrieve_by_user', [PhotoController::class, 'retrieve_by_user']);
         Route::get('/retrieve/{id}', [PhotoController::class, 'retrieve_by_id']);
