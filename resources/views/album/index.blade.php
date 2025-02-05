@@ -8,11 +8,11 @@
         @foreach ($data as $d)
 
         <div class=" bg-white rounded-lg shadow-lg overflow-hidden max-w-xs w-full group cursor-pointer transform duration-500 hover:-translate-y-1">
-            <a href="{{ url('photo/detail') }}/${data.id}">
+            <a href="{{ url("album/detail/$d->id") }}">
                 <img src="{{ $d->latestPhoto ? url('storage/' . $d->latestPhoto->path) : asset('asset/images/default-album.jpg') }}" alt="image ${data.title}" class="w-full h-64 object-cover">
             </a>
             <div class="px-4 pb-4 pt-1">
-                <a href="{{ url('photo/detail') }}/${data.id}">
+                <a href="{{ url("album/detail/$d->id") }}">
                 <h4 class="text-lg font-bold text-gray-800 mb-2">{{ $d->title }}</h4>
                 </a>
                 {{-- <p class="text-gray-700 leading-tight mb-4">

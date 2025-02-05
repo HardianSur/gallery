@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
+use App\Models\Photo;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +16,17 @@ class AlbumController extends Controller
     public function index(){
         $data = Album::with(['latestPhoto:id,album_id,path,created_at', 'user:id,username,avatar'])->inRandomOrder()->get();
 
-        // $data = $data->map(function($item)  {
-        //     $item->created = $item->latestPhoto->created_at->diffForHumans();
-        //     return $item;
-        // });
-
         return view('album.index', compact('data'));
+    }
+
+    public function detail($id){
+        $data = Album::with('user:id,username,avatar')->findOrFail($id);
+
+        $photos = Photo::select(['id', 'path', 'title'])->whereHas('album', function($q) use ($id){
+            $q->where('id', $id);
+        })->get();
+
+        return view('album.detail', compact('data', 'photos'));
     }
 
     public function retrieve(){

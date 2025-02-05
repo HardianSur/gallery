@@ -95,7 +95,7 @@ class PhotoController extends Controller
                 $q->select(['id','username', 'avatar']);
             }, 'like'=>function($q){
                 $q->select(['id','user_id', 'photo_id']);
-            }])->latest()->get();
+            }])->inRandomOrder()->get();
 
             $data = $data->map(function($item) use($user) {
                 $item->like_total = $item->like->count();
