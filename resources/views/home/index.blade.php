@@ -104,7 +104,10 @@
                         }
                     },
                     error: function(xhr, status, error) {
-                        alert(xhr.responseJSON);
+                        if (xhr.status === 401) {
+                            // console.log($("#login-modal-button"));
+                            $("#login-modal-button").click();
+                        }
                         console.log("Terjadi error:", xhr);
                     }
                 });

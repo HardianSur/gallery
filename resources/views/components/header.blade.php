@@ -74,6 +74,23 @@
                 </button>
             </div>
         @endauth
+        @guest
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
+            <a href="{{ url('/auth/signin') }}"
+                class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                aria-label="Cart">
+                Login
+                </span>
+            </a>
+
+            <a href="{{ url('/auth/register') }}"
+                class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                aria-label="Cart">
+                Register
+                </span>
+            </a>
+        </div>
+        @endguest
 
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
             <ul

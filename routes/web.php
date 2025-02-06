@@ -18,22 +18,9 @@ Route::prefix('/auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->middleware("auth");
 });
 
-Route::middleware("auth")->group(function () {
-    Route::middleware("admin")->group(function () {
-        Route::prefix("admin")->group(function () {
-            Route::get("/", [AdminController::class, 'index']);
-            Route::post("/{id}", [AdminController::class, 'processRegister']);
-        });
-    });
+Route::middleware("allow.guest.get")->group(function () {
 
     Route::get('/', [HomeController::class, 'index']);
-
-    Route::prefix('/profile')->group(function () {
-        Route::get('/', function () {
-            return view('profile.index');
-        });
-        Route::put('/{id}', [UserController::class, 'update']);
-    });
 
     Route::prefix('album')->group(function () {
         Route::get('/', [AlbumController::class, 'index']);
@@ -68,10 +55,25 @@ Route::middleware("auth")->group(function () {
             Route::get('/comment/{id}', [PhotoDetailController::class, 'retrieveComment']);
             Route::post('/comment/{id}', [PhotoDetailController::class, 'storeComment']);
         });
-
     });
 
     Route::prefix('notification')->group(function () {
         Route::get('/', [NotificationController::class, 'index']);
+    });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('/profile')->group(function () {
+        Route::get('/', function () {
+            return view('profile.index');
+        });
+        Route::put('/{id}', [UserController::class, 'update']);
+    });
+
+    Route::middleware("admin")->group(function () {
+        Route::prefix("admin")->group(function () {
+            Route::get("/", [AdminController::class, 'index']);
+            Route::post("/{id}", [AdminController::class, 'processRegister']);
+        });
     });
 });

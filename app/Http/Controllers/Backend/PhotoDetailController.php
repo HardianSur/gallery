@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Validator;
 class PhotoDetailController extends Controller
 {
     public function index($id){
-        $user = Auth::user();
 
         $data =  $data = Photo::with(['user' => function ($q) {
             $q->select(['id', 'username', 'avatar']);
@@ -25,7 +24,12 @@ class PhotoDetailController extends Controller
         }])->find($id);
 
         $data->like_total = $data->like->count();
-        $data->liked = $data->like->contains('user_id', $user->id);
+        $data->liked = null;
+
+        if(Auth::check()){
+            $user = Auth::user();
+            $data->liked = $data->like->contains('user_id', $user->id);
+        }
 
         // dd($data);
         $data->created = $data->created_at->diffForHumans();

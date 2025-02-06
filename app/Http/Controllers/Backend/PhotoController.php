@@ -90,16 +90,24 @@ class PhotoController extends Controller
 
     public function retrieve(){
         try {
-            $user = Auth::user();
             $data = Photo::with(['user'=>function($q){
                 $q->select(['id','username', 'avatar']);
             }, 'like'=>function($q){
                 $q->select(['id','user_id', 'photo_id']);
             }])->inRandomOrder()->get();
 
+            $user = null;
+
+            if(Auth::check()){
+                $user = Auth::user();
+            }
             $data = $data->map(function($item) use($user) {
                 $item->like_total = $item->like->count();
-                $item->liked = $item->like->contains('user_id', $user->id) ? true : null;
+                if (Auth::check()) {
+                    $item->liked = $item->like->contains('user_id', $user->id) ? true : null;
+                }else{
+                    $item->liked = null;
+                }
 
                 $item->created = $item->created_at->diffForHumans();
                 unset($item->like);

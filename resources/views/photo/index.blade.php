@@ -150,7 +150,9 @@
                     },
                     error: function(xhr, status, error) {
                         $('#comment').val('')
-                        console.log("Terjadi error:", xhr);
+                        if (xhr.status === 401) {
+                            $("#login-modal-button").click();
+                        }
                     }
                 });
             });
@@ -250,7 +252,9 @@
                         }
                     },
                     error: function(xhr, status, error) {
-                        alert(xhr.responseJSON);
+                        if (xhr.status === 401) {
+                            $("#login-modal-button").click();
+                        }
                         console.log("Terjadi error:", xhr);
                     }
                 });
