@@ -114,4 +114,16 @@ class PhotoDetailController extends Controller
             return response()->json(['message'=> "Internal Server Error"], 500);
         }
     }
+
+    public function download($id)
+    {
+        $photo = Photo::findOrFail($id);
+        $filePath = storage_path('app/public/' . $photo->path);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $photo->title . '.' . pathinfo($filePath, PATHINFO_EXTENSION));
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan.');
+        }
+    }
 }

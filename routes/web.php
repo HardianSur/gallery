@@ -52,6 +52,7 @@ Route::middleware("allow.guest.get")->group(function () {
 
         Route::prefix('detail')->group(function () {
             Route::get('/{id}', [PhotoDetailController::class, 'index']);
+            Route::get('/download/{id}', [PhotoDetailController::class, 'download']);
             Route::get('/comment/{id}', [PhotoDetailController::class, 'retrieveComment']);
             Route::post('/comment/{id}', [PhotoDetailController::class, 'storeComment']);
         });
