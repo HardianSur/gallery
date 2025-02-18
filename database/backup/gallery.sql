@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Feb 2025 pada 09.07
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Feb 18, 2025 at 03:03 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,69 +24,71 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `albums`
+-- Table structure for table `albums`
 --
 
 CREATE TABLE `albums` (
-  `id` char(36) NOT NULL,
-  `user_id` char(36) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `albums`
+-- Dumping data for table `albums`
 --
 
 INSERT INTO `albums` (`id`, `user_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
 ('9e22b00d-3e0b-4a1f-b786-cee7c852a104', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'Real Betis', 'New Journey', '2025-02-04 18:16:37', '2025-02-04 18:16:37'),
 ('9e22bb54-8729-446c-a4d5-98eb7faf5bee', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'Friend', 'My Bestfriends', '2025-02-04 18:48:09', '2025-02-04 18:48:09'),
-('9e22dcf6-4d6d-4b2b-9acc-972c4800736c', '9e22ae6d-0c04-47e8-a84f-2b620ff805cc', 'Liverpol', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda culpa ullam saepe quod eligendi nesciunt optio cumque iure dolore adipisci, ipsum velit hic id quasi veniam est libero dolor recusandae! In tempore velit ipsum alias nihil, ab officia magni suscipit impedit ex, praesentium at ipsam. Eos earum quisquam quos consequatur, sequi ea recusandae numquam assumenda illo quas, modi commodi beatae repudiandae ad quam facilis totam. Cumque dolorem, excepturi itaque commodi maiores necessitatibus nisi. Eum, pariatur? Suscipit quis deserunt earum magnam dolorum architecto dolores quam deleniti possimus, eos consequuntur porro vitae ullam alias voluptatum perspiciatis cumque autem soluta magni consequatur. Veniam soluta perferendis laudantium, doloribus voluptate voluptatem alias dolorum dolor magnam, iure aut consequatur, eius facilis ab natus deserunt quibusdam dignissimos explicabo repellat incidunt ullam error distinctio exercitationem quidem. Aspernatur minima dolorem repellendus eligendi et sequi commodi vel sapiente maiores vero corporis quasi consequatur recusandae, aliquam optio amet, vitae, qui dolores ex nemo. Explicabo expedita esse fugiat soluta possimus sequi saepe culpa enim vel, porro impedit molestiae sapiente, est, eum quae harum necessitatibus magni. Dicta officia labore doloribus enim est molestiae soluta aliquam ab. Itaque officiis natus voluptas adipisci illo praesentium optio sed nulla odit, quis, odio libero pariatur voluptate id minima cumque expedita inventore, vero laudantium temporibus corrupti ab atque esse. Ex enim quae ipsum facere ratione cum vel praesentium molestias eligendi est quibusdam, error ea impedit vero, animi at sapiente aliquam repellendus odit. Perspiciatis, neque? Non itaque aperiam explicabo eaque, dolores atque quod accusamus ad assumenda voluptatum, hic ipsum nobis mollitia? Iure quos, laboriosam illum vitae molestiae explicabo ut excepturi impedit dolorum neque error pariatur totam maxime aperiam numquam? Consectetur animi dolorem aliquid veritatis voluptas reprehenderit. Veritatis obcaecati iste illum cumque repellat! Rerum architecto itaque iusto aliquid sunt rem quod! Odit ipsam veritatis tenetur qui aliquid adipisci necessitatibus at?', '2025-02-04 20:22:12', '2025-02-04 23:46:42');
+('9e22dcf6-4d6d-4b2b-9acc-972c4800736c', '9e22ae6d-0c04-47e8-a84f-2b620ff805cc', 'Liverpol', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda culpa ullam saepe quod eligendi nesciunt optio cumque iure dolore adipisci, ipsum velit hic id quasi veniam est libero dolor recusandae! In tempore velit ipsum alias nihil, ab officia magni suscipit impedit ex, praesentium at ipsam. Eos earum quisquam quos consequatur, sequi ea recusandae numquam assumenda illo quas, modi commodi beatae repudiandae ad quam facilis totam. Cumque dolorem, excepturi itaque commodi maiores necessitatibus nisi. Eum, pariatur? Suscipit quis deserunt earum magnam dolorum architecto dolores quam deleniti possimus, eos consequuntur porro vitae ullam alias voluptatum perspiciatis cumque autem soluta magni consequatur. Veniam soluta perferendis laudantium, doloribus voluptate voluptatem alias dolorum dolor magnam, iure aut consequatur, eius facilis ab natus deserunt quibusdam dignissimos explicabo repellat incidunt ullam error distinctio exercitationem quidem. Aspernatur minima dolorem repellendus eligendi et sequi commodi vel sapiente maiores vero corporis quasi consequatur recusandae, aliquam optio amet, vitae, qui dolores ex nemo. Explicabo expedita esse fugiat soluta possimus sequi saepe culpa enim vel, porro impedit molestiae sapiente, est, eum quae harum necessitatibus magni. Dicta officia labore doloribus enim est molestiae soluta aliquam ab. Itaque officiis natus voluptas adipisci illo praesentium optio sed nulla odit, quis, odio libero pariatur voluptate id minima cumque expedita inventore, vero laudantium temporibus corrupti ab atque esse. Ex enim quae ipsum facere ratione cum vel praesentium molestias eligendi est quibusdam, error ea impedit vero, animi at sapiente aliquam repellendus odit. Perspiciatis, neque? Non itaque aperiam explicabo eaque, dolores atque quod accusamus ad assumenda voluptatum, hic ipsum nobis mollitia? Iure quos, laboriosam illum vitae molestiae explicabo ut excepturi impedit dolorum neque error pariatur totam maxime aperiam numquam? Consectetur animi dolorem aliquid veritatis voluptas reprehenderit. Veritatis obcaecati iste illum cumque repellat! Rerum architecto itaque iusto aliquid sunt rem quod! Odit ipsam veritatis tenetur qui aliquid adipisci necessitatibus at?', '2025-02-04 20:22:12', '2025-02-04 23:46:42'),
+('9e3d96bc-c125-4977-acd6-73ee70b2372e', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'uhuy', 'heheh', '2025-02-18 03:13:12', '2025-02-18 03:13:12'),
+('9e3dd544-706d-4e81-b95c-7c44bc320fc0', '9e22ae6d-637d-463d-8b4d-bc0a186518c2', 'Evos', 'Test', '2025-02-18 06:08:02', '2025-02-18 06:08:02');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cache`
+-- Table structure for table `cache`
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) NOT NULL,
-  `value` mediumtext NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cache_locks`
+-- Table structure for table `cache_locks`
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) NOT NULL,
-  `owner` varchar(255) NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comments`
+-- Table structure for table `comments`
 --
 
 CREATE TABLE `comments` (
-  `id` char(36) NOT NULL,
-  `photo_id` char(36) NOT NULL,
-  `head_id` char(36) DEFAULT NULL,
-  `user_id` char(36) NOT NULL,
-  `content` text NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `head_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `photo_id`, `head_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
@@ -96,70 +98,70 @@ INSERT INTO `comments` (`id`, `photo_id`, `head_id`, `user_id`, `content`, `crea
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jobs`
+-- Table structure for table `jobs`
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `job_batches`
+-- Table structure for table `job_batches`
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `total_jobs` int(11) NOT NULL,
-  `pending_jobs` int(11) NOT NULL,
-  `failed_jobs` int(11) NOT NULL,
-  `failed_job_ids` longtext NOT NULL,
-  `options` mediumtext DEFAULT NULL,
-  `cancelled_at` int(11) DEFAULT NULL,
-  `created_at` int(11) NOT NULL,
-  `finished_at` int(11) DEFAULT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE `likes` (
-  `id` char(36) NOT NULL,
-  `user_id` char(36) NOT NULL,
-  `photo_id` char(36) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`id`, `user_id`, `photo_id`, `created_at`, `updated_at`) VALUES
@@ -169,17 +171,17 @@ INSERT INTO `likes` (`id`, `user_id`, `photo_id`, `created_at`, `updated_at`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -197,58 +199,58 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
-  `id` char(36) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `notifiable_type` varchar(255) NOT NULL,
-  `notifiable_id` char(36) NOT NULL,
-  `data` text NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `notifications`
+-- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
-('c04ade2f-444b-42ab-ba23-32058365b952', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '{\"message\":\"Darwin Nunez liked your photo\",\"liker_id\":\"9e22ae6d-0c04-47e8-a84f-2b620ff805cc\",\"photo_id\":\"9e22c5c7-ff31-47c8-85cd-9c11aee0ad9b\",\"photo_title\":\"Firts touch at LaLiga\",\"type\":\"like\",\"time\":\"2025-02-05T04:47:15.369033Z\"}', NULL, '2025-02-04 21:47:15', '2025-02-04 21:47:15');
+('c04ade2f-444b-42ab-ba23-32058365b952', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '{\"message\":\"Darwin Nunez liked your photo\",\"liker_id\":\"9e22ae6d-0c04-47e8-a84f-2b620ff805cc\",\"photo_id\":\"9e22c5c7-ff31-47c8-85cd-9c11aee0ad9b\",\"photo_title\":\"Firts touch at LaLiga\",\"type\":\"like\",\"time\":\"2025-02-05T04:47:15.369033Z\"}', '2025-02-18 02:28:38', '2025-02-04 21:47:15', '2025-02-18 02:28:38');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `photos`
+-- Table structure for table `photos`
 --
 
 CREATE TABLE `photos` (
-  `id` char(36) NOT NULL,
-  `album_id` char(36) NOT NULL,
-  `user_id` char(36) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `path` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `album_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `photos`
+-- Dumping data for table `photos`
 --
 
 INSERT INTO `photos` (`id`, `album_id`, `user_id`, `title`, `description`, `path`, `created_at`, `updated_at`) VALUES
@@ -256,22 +258,25 @@ INSERT INTO `photos` (`id`, `album_id`, `user_id`, `title`, `description`, `path
 ('9e22bddb-b8c5-455d-9069-3724eca03fcd', '9e22bb54-8729-446c-a4d5-98eb7faf5bee', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'Itulah duo trio', 'Kombo mematikan ☠☠☠', 'images/WpXJH380Ltn294fB3CemKche38TxY55TeQIR6r0l.jpg', '2025-02-04 18:55:13', '2025-02-04 18:55:13'),
 ('9e22c5c7-ff31-47c8-85cd-9c11aee0ad9b', '9e22b00d-3e0b-4a1f-b786-cee7c852a104', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'Firts touch at LaLiga', '🌪🌪🌪', 'images/hJqxCNEmpXs03WH5RtVlYzC7ce76HPmhZGH06w9F.jpg', '2025-02-04 19:17:22', '2025-02-04 19:17:22'),
 ('9e22de86-e1e3-462c-8374-8acc7fe2954e', '9e22dcf6-4d6d-4b2b-9acc-972c4800736c', '9e22ae6d-0c04-47e8-a84f-2b620ff805cc', 'Auuuuuu', '🐺🐺🐺🐺', 'images/2vQ8wPQRlMqGgjPtzuT2sF8ChKVwmFMKNjP1ED0i.jpg', '2025-02-04 20:26:34', '2025-02-04 20:26:34'),
-('9e233751-a028-42f8-8e31-f215334daa24', '9e22dcf6-4d6d-4b2b-9acc-972c4800736c', '9e22ae6d-0c04-47e8-a84f-2b620ff805cc', 'Epos loal', 'aku fens epos sejak zigot', 'images/s2vlOy6vtBrP1LqGLLfKM3JvEPVxCkbYY3JUpaa0.jpg', '2025-02-05 00:34:51', '2025-02-05 00:34:51');
+('9e233751-a028-42f8-8e31-f215334daa24', '9e22dcf6-4d6d-4b2b-9acc-972c4800736c', '9e22ae6d-0c04-47e8-a84f-2b620ff805cc', 'Epos loal', 'aku fens epos sejak zigot', 'images/s2vlOy6vtBrP1LqGLLfKM3JvEPVxCkbYY3JUpaa0.jpg', '2025-02-05 00:34:51', '2025-02-05 00:34:51'),
+('9e3dd679-c086-4964-83de-0e27cdd1bc3b', '9e3dd544-706d-4e81-b95c-7c44bc320fc0', '9e22ae6d-637d-463d-8b4d-bc0a186518c2', 'M1 World Champion', 'Hastag apa adick adick 🤪🤪🤪 ?', 'images/ykZ1yVVWgcpzyVbWHBlCNUFFbv6w2S5qwHPBF7nG.jpg', '2025-02-18 06:11:24', '2025-02-18 06:11:24'),
+('9e3dd932-096c-466d-af07-8a50fd6f3895', '9e3dd544-706d-4e81-b95c-7c44bc320fc0', '9e22ae6d-637d-463d-8b4d-bc0a186518c2', 'Ayo Ayoi', 'Kita kedatangan tamu dari malaysia nih Fams', 'images/GNg4nmKgZlEcNw5AfTUyah6Na9anM7EqjdqdccsU.jpg', '2025-02-18 06:19:01', '2025-02-18 06:19:01'),
+('9e3ddb1d-7cc8-4334-82b7-1b3062c05248', '9e3dd544-706d-4e81-b95c-7c44bc320fc0', '9e22ae6d-637d-463d-8b4d-bc0a186518c2', 'ANNOUNCEMENT!!!', 'Perkenalkan saudara baru kita EVOS INDIA.', 'images/1fh6bL3AamaCZAhhOyRxFM06ffRoODKJ4Rfk7LRa.jpg', '2025-02-18 06:24:23', '2025-02-18 06:24:23');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `registration_requests`
+-- Table structure for table `registration_requests`
 --
 
 CREATE TABLE `registration_requests` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `address` text DEFAULT NULL,
-  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -279,18 +284,18 @@ CREATE TABLE `registration_requests` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
-  `id` char(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -300,56 +305,55 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) NOT NULL,
-  `user_id` char(36) DEFAULT NULL,
-  `ip_address` varchar(45) DEFAULT NULL,
-  `user_agent` text DEFAULT NULL,
-  `payload` longtext NOT NULL,
-  `last_activity` int(11) NOT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `sessions`
+-- Dumping data for table `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('ol207ZvSLhNyVVgIfMa50miTcyHK9aaPsxVOzOWK', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMU1HbXZaYWpURzdsQ0Z0dHVhYUFla29wTjRSb1dmQmFxVmx6V0NOSCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMToiaHR0cDovL2xvY2FsaG9zdDo4MDAwIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hbGJ1bS9kZXRhaWwvOWUyMmRjZjYtNGQ2ZC00YjJiLTlhY2MtOTcyYzQ4MDA3MzZjIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6IjllMjJhZTZjLWI1ZjYtNDUxMi05MGVlLTI0YjhmMTdhY2M2NSI7fQ==', 1738741315),
-('unT589xB5LGCU41fYwhbYnGuyVcZwJeErRX2l4og', '9e22ae6d-0c04-47e8-a84f-2b620ff805cc', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiREV4TUVGSjdNclNHU2JoMzZuMUpTVDQzTzE5eEFBb3R2YTZ4aWc5UyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMToiaHR0cDovL2xvY2FsaG9zdDo4MDAwIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hbGJ1bS9kZXRhaWwvOWUyMmRjZjYtNGQ2ZC00YjJiLTlhY2MtOTcyYzQ4MDA3MzZjIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6IjllMjJhZTZkLTBjMDQtNDdlOC1hODRmLTJiNjIwZmY4MDVjYyI7fQ==', 1738742243);
+('9ZbjUfiHTaL7k1AbIWxkXaZegzB6rIR8X2FEDABQ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaUJKUjlpQkxYRlFBaDB2dEc0OFFnQmRDVU55RG1sWHpTeDVycFd3RSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9waG90byI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1739885088);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` char(36) NOT NULL,
-  `role_id` char(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `address` text DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `username`, `email`, `address`, `avatar`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 ('9e22ae6c-5f7b-4190-8e07-d0eef6f3fe0a', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'admin', 'admin', 'admin@hgallery.com', 'Hgallery', NULL, NULL, '$2y$12$INcEE6b5c8gmFslqPjgNn.gYEH9DeOwxD2iUQoIJnW3KYtmODMovO', NULL, '2025-02-04 18:12:04', '2025-02-04 18:12:04'),
 ('9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'Anthony Santos', 'ElGasing', 'athony@example.com', 'Andalusia', 'avatars/IUKWxU8WfFWaWK8XkXwc1khZY1ApXrb1WhDwFJrs.png', NULL, '$2y$12$0z7.3B9kNp5po3ri/yqK0Ok3X8Mh4V.4XlbKgUQYQbZnGE8/Jh4A2', NULL, '2025-02-04 18:12:04', '2025-02-04 18:15:10'),
 ('9e22ae6d-0c04-47e8-a84f-2b620ff805cc', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'Darwin Nunez', 'MarmutUruguay', 'marmut@example.com', 'Liverpool', 'avatars/Y7n5ZRbp7cLeVJagxucQhU1duChSSETfJkgE5VuV.jpg', NULL, '$2y$12$T2A7CJtbFhwoj9/zqxBtBuQmYTcjGGGWNc1aFXKO.D9Htx4SjHCZK', NULL, '2025-02-04 18:12:04', '2025-02-04 20:20:17'),
-('9e22ae6d-637d-463d-8b4d-bc0a186518c2', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'Agus Pratama', 'aguspratama', 'aguspratama@example.com', 'Jl. Diponegoro No. 15, Surabaya', NULL, NULL, '$2y$12$/1kEjLg2kTvNePfTtNOiPe26jy8BpQrK1o2RQ4XKtFb.UVu28ZS6y', NULL, '2025-02-04 18:12:04', '2025-02-04 18:12:04'),
+('9e22ae6d-637d-463d-8b4d-bc0a186518c2', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'PT Tuma Epos', 'Evos Esport', 'evos@evos.com', 'Jl. Diponegoro No. 15, Surabaya', NULL, NULL, '$2y$12$/1kEjLg2kTvNePfTtNOiPe26jy8BpQrK1o2RQ4XKtFb.UVu28ZS6y', NULL, '2025-02-04 18:12:04', '2025-02-18 06:04:03'),
 ('9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'Dewi Lestari', 'dewilestari', 'dewilestari@example.com', 'Jl. Gatot Subroto No. 5, Medan', NULL, NULL, '$2y$12$MG7PHBADIT1X0gzvfhjdpOfBYKLf4acTsNHnWbbPIu1VAHKbM.LKy', NULL, '2025-02-04 18:12:05', '2025-02-04 18:12:05'),
 ('9e22ae6e-0f10-4de3-9ea3-b116cc6018ef', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'Rizky Hidayat', 'rizkyhidayat', 'rizkyhidayat@example.com', 'Jl. Malioboro No. 30, Yogyakarta', NULL, NULL, '$2y$12$zgDnAJrKTVbg2im70.LNQ.aXAoRpHNPdVtQMP.4F/E4k7eS0pL0A6', NULL, '2025-02-04 18:12:05', '2025-02-04 18:12:05'),
 ('9e22ae6e-652f-48c9-9909-9f4039ad130d', '9e22ae6c-01ac-40bb-a914-abc4e9d290f5', 'Fitri Handayani', 'fitrihandayani', 'fitrihandayani@example.com', 'Jl. Pemuda No. 8, Semarang', NULL, NULL, '$2y$12$DK/B4J3NPDbvufwOoTg6WOuePBgw4Me8KL9ZZVM6dGe0wA.k0ppfm', NULL, '2025-02-04 18:12:05', '2025-02-04 18:12:05'),
@@ -373,82 +377,82 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `username`, `email`, `address`, `a
 --
 
 --
--- Indeks untuk tabel `albums`
+-- Indexes for table `albums`
 --
 ALTER TABLE `albums`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `cache`
+-- Indexes for table `cache`
 --
 ALTER TABLE `cache`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indeks untuk tabel `cache_locks`
+-- Indexes for table `cache_locks`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indeks untuk tabel `comments`
+-- Indexes for table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `jobs`
+-- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`);
 
 --
--- Indeks untuk tabel `job_batches`
+-- Indexes for table `job_batches`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `likes`
+-- Indexes for table `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `notifications`
+-- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `notifications_notifiable_type_notifiable_id_index` (`notifiable_type`,`notifiable_id`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `photos`
+-- Indexes for table `photos`
 --
 ALTER TABLE `photos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `registration_requests`
+-- Indexes for table `registration_requests`
 --
 ALTER TABLE `registration_requests`
   ADD PRIMARY KEY (`id`),
@@ -456,13 +460,13 @@ ALTER TABLE `registration_requests`
   ADD UNIQUE KEY `registration_requests_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sessions`
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -470,39 +474,39 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `jobs`
+-- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `registration_requests`
+-- AUTO_INCREMENT for table `registration_requests`
 --
 ALTER TABLE `registration_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
