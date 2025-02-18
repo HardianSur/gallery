@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function index($id=null){
+            $myProfile= false;
+            $user = User::findOrFail($id);
+
+            if (Auth::check() && Auth::user()->id == $user->id) {
+                $myProfile= true;
+            }
+
+            return view('profile.index', compact('user', 'myProfile'));
+    }
+
     public function update(Request $request, $id){
         try {
             $validator = Validator::make($request->all(), [
@@ -54,11 +65,11 @@ class UserController extends Controller
         }
     }
 
-    public function notification(){
-        try {
+    // public function notification(){
+    //     try {
 
-        } catch (\Exception $e) {
-            Log::error("Internal Server Error", [$e->getMessage(), $e->getCode()]);
-        }
-    }
+    //     } catch (\Exception $e) {
+    //         Log::error("Internal Server Error", [$e->getMessage(), $e->getCode()]);
+    //     }
+    // }
 }

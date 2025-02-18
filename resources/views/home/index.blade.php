@@ -59,10 +59,10 @@
                                         vehicula elit. Nunc et ex at turpis rutrum viverra.
                                     </p> --}}
                                     <div class="flex justify-between items-center">
-                                        <div class="flex items-center">
+                                        <a href="{{ url('profile') }}/${data.user_id}" class="flex items-center">
                                             <img src="${data.user.avatar ? '{{ url('storage/') }}/' + data.user.avatar : '{{ asset('asset/images/Default_pfp.svg') }}'}" alt="Avatar" class="w-6 h-6 rounded-full mr-2 object-cover">
                                             <span class="text-gray-800 font-semibold text-xs">${data.user.username}</span>
-                                        </div>
+                                        </a>
                                         <span class="text-gray-600 text-xs">${data.created}</span>
                                     </div>
                                 </div>

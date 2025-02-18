@@ -24,7 +24,7 @@ Route::middleware("allow.guest.get")->group(function () {
 
     Route::prefix('album')->group(function () {
         Route::get('/', [AlbumController::class, 'index']);
-        Route::get('/retrieve', [AlbumController::class, 'retrieve']);
+        Route::get('/retrieve_by_user/{id}', [AlbumController::class, 'retrieve_by_user']);
         Route::get('/retrieve/{id}', [AlbumController::class, 'retrieve_by_id']);
         Route::get('/get_options', [AlbumController::class, 'get_options']);
         Route::post('/', [AlbumController::class, 'store']);
@@ -41,7 +41,7 @@ Route::middleware("allow.guest.get")->group(function () {
     Route::prefix('photo')->group(function () {
         Route::get('/', [HomeController::class, 'index']);
         Route::get('/retrieve', [PhotoController::class, 'retrieve']);
-        Route::get('/retrieve_by_user', [PhotoController::class, 'retrieve_by_user']);
+        Route::get('/retrieve_by_user/{id}', [PhotoController::class, 'retrieve_by_user']);
         Route::get('/retrieve/{id}', [PhotoController::class, 'retrieve_by_id']);
         // Route::get('/get_options', [AlbumController::class, 'get_options']);
         Route::post('/', [PhotoController::class, 'store']);
@@ -65,9 +65,7 @@ Route::middleware("allow.guest.get")->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/profile')->group(function () {
-        Route::get('/', function () {
-            return view('profile.index');
-        });
+        Route::get('/{id}', [UserController::class, 'index']);
         Route::put('/{id}', [UserController::class, 'update']);
     });
 

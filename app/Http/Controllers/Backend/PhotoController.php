@@ -6,6 +6,7 @@ use App\Events\NewLikeNotification;
 use App\Http\Controllers\Controller;
 use App\Models\Like;
 use App\Models\Photo;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,10 +48,10 @@ class PhotoController extends Controller
             $data->album_id = $request->post('album');
             $data->save();
 
-            return response()->json('Successfully upload image', 200);
+            return response()->json(['message'=>'Successfully upload image'], 200);
         } catch (Exception $e) {
-            return response()->json('Internal Server Error', 500);
             Log::error("Internal Server Error", [$e->getMessage()]);
+            return response()->json('Internal Server Error', 500);
         }
     }
 
@@ -129,10 +130,10 @@ class PhotoController extends Controller
         }
     }
 
-    public function retrieve_by_user(Request $request)
+    public function retrieve_by_user(Request $request, $id)
     {
         try {
-            $user = Auth::user();
+            $user = User::findOrFail($id);
             $sort = $request->input("sort");
             $order = $request->input("order");
 

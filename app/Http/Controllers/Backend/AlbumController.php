@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\Photo;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,9 @@ class AlbumController extends Controller
         return view('album.detail', compact('data', 'photos'));
     }
 
-    public function retrieve(){
+    public function retrieve_by_user($id){
         try {
-            $user = Auth::user();
+            $user = User::findOrFail($id);
 
             $data = Album::with('latestPhoto:id,album_id,path')
             ->where('user_id', $user->id)
@@ -103,7 +104,7 @@ class AlbumController extends Controller
             $data->user_id = $user->id;
             $data->save();
 
-            return response()->json('Album Berhasil Dibuat', 200);
+            return response()->json('Successfully create album', 200);
         } catch (Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);
         }
