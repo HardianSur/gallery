@@ -1,4 +1,5 @@
 import './bootstrap';
+import 'flowbite';
 
 // import { createConsumer } from '@rails/actioncable';
 

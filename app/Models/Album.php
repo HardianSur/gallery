@@ -23,7 +23,7 @@ class Album extends Model
 
     public function photo()
     {
-        $this->hasMany(Photo::class, 'album_id', 'id');
+        return $this->hasMany(Photo::class, 'album_id', 'id');
     }
 
     public function latestPhoto()

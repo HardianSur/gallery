@@ -59,10 +59,6 @@ class UserController extends Controller
                 'address'
             ]));
 
-            $role = Role::where('name', 'user')->first();
-
-            $user->role_id = $role->id;
-
             $user->save();
             return response()->json(['message'=>'Berhasil Di Update'], 200);
         } catch (\Exception $e) {

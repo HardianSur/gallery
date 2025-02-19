@@ -13,7 +13,7 @@
     <title>H-Gallery</title>
 
     <script src="{{ asset('asset/js/jquery.js') }}"></script>
-    <script src="{{ asset('asset/js/flowbite.js') }}"></script>
+    {{-- <script src="{{ asset('asset/js/flowbite.js') }}"></script> --}}
 </head>
 
 <body class="bg-slate-50 dark:bg-gray-900 ">

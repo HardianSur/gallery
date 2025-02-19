@@ -11,4 +11,8 @@ class Like extends Model
     protected $keyType = 'string';
 public $incrementing = false;
     protected $guarded = ['id'];
+
+    public function photo(){
+        return $this->belongsTo(Photo::class,'photo_id', 'id');
+    }
 }

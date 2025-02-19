@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\RegistrationRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,8 @@ class AuthController extends Controller
             if (!$checkHash) {
                 return response()->json('email atau password salah', 400);
             }
-            $user = Auth::login($checkUser);
+
+            Auth::login($checkUser);
 
             return response()->json('Login berhasil', 200);
         } catch (\Exception $e) {
@@ -86,8 +88,11 @@ class AuthController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors());
             }
+            $role = Role::where('name', 'user')->first();
+
 
             $data = new User;
+            $data->role_id = $role->id;
             $data->name = $request->post('name');
             $data->username = $request->post('username');
             $data->email = $request->post('email');
@@ -95,7 +100,7 @@ class AuthController extends Controller
             $data->address = $request->post('alamat');
             $data->save();
 
-            return response()->json('Register berhasil', 200);
+            return redirect('/');
         } catch (\Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);
             return response()->json('Internal Server Error', 500);
