@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'isAdmin'=>\App\Http\Middleware\IsAdmin::class,
             'allow.guest.get' => \App\Http\Middleware\AllowGuestForGetRequest::class,
         ]);
     })

@@ -22,7 +22,7 @@
                 @foreach ($photos as $photo)
                 <div>
                     <figure class="relative max-w-sm transition-all duration-300 group cursor-pointer inset-shadow-sm hover:shadow-2xl">
-                        <a href="{{ url("photo/detail/$photo->id>") }}">
+                        <a href="{{ url("photo/detail/$photo->id") }}">
                             <img class="h-auto max-w-full rounded-lg" src="{{ url("storage/$photo->path") }}" alt="">
                         </a>
                         <figcaption class="absolute px-2 text-sm text-white font-semibold bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

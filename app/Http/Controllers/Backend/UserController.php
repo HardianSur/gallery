@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,10 @@ class UserController extends Controller
                 'email',
                 'address'
             ]));
+
+            $role = Role::where('name', 'user')->first();
+
+            $user->role_id = $role->id;
 
             $user->save();
             return response()->json(['message'=>'Berhasil Di Update'], 200);

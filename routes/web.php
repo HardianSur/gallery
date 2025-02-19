@@ -18,7 +18,7 @@ Route::prefix('/auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->middleware("auth");
 });
 
-Route::middleware("allow.guest.get")->group(function () {
+Route::middleware(["allow.guest.get", "isAdmin"])->group(function () {
 
     Route::get('/', [HomeController::class, 'index']);
 

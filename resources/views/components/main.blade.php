@@ -17,7 +17,11 @@
 </head>
 
 <body class="bg-slate-50 dark:bg-gray-900 ">
-    @include('components.header')
+    @if (request()->is('admin') || request()->is('admin/*'))
+        @include('components.admin-header')
+    @else
+        @include('components.header')
+    @endif
     <main class="">
         @yield('container')
         @include('components.modal')

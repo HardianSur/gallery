@@ -23,7 +23,7 @@ class PhotoDetailController extends Controller
             $q->select(['id','photo_id', 'user_id']);
         }])->find($id);
 
-        $data->like_total = $data->like->count();
+        $data->like_total = $data->like ? $data->like->count() : null;
         $data->liked = null;
 
         if(Auth::check()){
