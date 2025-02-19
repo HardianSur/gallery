@@ -38,8 +38,7 @@ class AuthController extends Controller
             if (!$checkHash) {
                 return response()->json('email atau password salah', 400);
             }
-            Auth::login($checkUser);
-
+            $user = Auth::login($checkUser);
 
             return response()->json('Login berhasil', 200);
         } catch (\Exception $e) {
@@ -109,7 +108,7 @@ class AuthController extends Controller
         try {
             Auth::logout();
 
-            return view("auth.index");
+            return redirect('/');
         } catch (\Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);
         }

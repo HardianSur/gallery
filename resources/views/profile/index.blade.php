@@ -154,18 +154,19 @@
                     success: function(response) {
                         if (response) {
                             var cardContainer = $('#card-album-container');
+                            var cardHtml = ``;
                             cardContainer.empty();
 
                             if (myProfile) {
                                 response.data.forEach(function(card) {
-                                    var cardHtml = `
+                                    cardHtml += `
                                         <div class="w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
                                             <a href="{{ url('album/detail') }}/${card.id}">
                                                 <img class="rounded-t-lg w-full max-h-28" src="${card.latest_photo ? '{{ url('storage/') }}/' + card.latest_photo.path : '{{ asset('asset/images/default-album.jpg') }}'}" alt="" />
                                             </a>
                                             <div class="p-2 grid grid-cols-2">
                                                 <div>
-                                                <a href="#">
+                                                <a href="{{ url('album/detail') }}/${card.id}">
                                                     <span class="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">${card.title}</span>
                                                 </a>
                                                 </div>
@@ -185,29 +186,28 @@
                                             </div>
                                         </div>
                                     `;
-                                    cardContainer.append(cardHtml);
-                                    initFlowbite();
                                 });
                             }else{
                                 response.data.forEach(function(card) {
-                                    var cardHtml = `
+                                    cardHtml += `
                                         <div class="w-full max-h-52 md:w-48 md:max-h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 card-item">
                                             <a href="{{ url('album/detail') }}/${card.id}">
                                                 <img class="rounded-t-lg w-full max-h-28" src="${card.latest_photo ? '{{ url('storage/') }}/' + card.latest_photo.path : '{{ asset('asset/images/default-album.jpg') }}'}" alt="" />
                                             </a>
                                             <div class="p-2 grid grid-cols-2">
                                                 <div>
-                                                <a href="#">
+                                                <a href="{{ url('album/detail') }}/${card.id}">
                                                     <span class="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">${card.title}</span>
                                                 </a>
                                                 </div>
                                             </div>
                                         </div>
                                     `;
-                                    cardContainer.append(cardHtml);
-                                    initFlowbite();
                                 });
                             }
+
+                            cardContainer.html(cardHtml);
+                            initFlowbite();
 
                         } else {
                             console.log("No cards available or error with data.");

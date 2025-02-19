@@ -25,7 +25,7 @@
 
                         <span class="text-gray-800 font-semibold text-xs">{{ $d->user->username }}</span>
                     </div>
-                    <span class="text-gray-600 text-xs">{{ $d->latestPhoto->created_at->diffForhumans() }}</span>
+                    <span class="text-gray-600 text-xs">{{ $d->latestPhoto ? $d->latestPhoto->created_at->diffForHumans() : 'No photos yet' }}</span>
                 </div>
             </div>
         </div>

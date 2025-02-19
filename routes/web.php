@@ -61,14 +61,14 @@ Route::middleware("allow.guest.get")->group(function () {
     Route::prefix('notification')->group(function () {
         Route::get('/', [NotificationController::class, 'index']);
     });
-});
 
-Route::middleware('auth')->group(function () {
     Route::prefix('/profile')->group(function () {
         Route::get('/{id}', [UserController::class, 'index']);
         Route::put('/{id}', [UserController::class, 'update']);
     });
+});
 
+Route::middleware('auth')->group(function () {
     Route::middleware("admin")->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/", [AdminController::class, 'index']);

@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full bg-white">
+@extends('components.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Document</title>
-    @vite('resources/css/app.css')
-    <script src="{{ asset('asset/js/jquery.js') }}"></script>
-</head>
-
-<body class="h-full">
-    <section class="bg-gray-50 dark:bg-gray-900">
+@section('container')
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+            <a href="#" class="flex items-center mb-6 text-2xl font-semibold whitespace-nowrap bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent dark:text-white">
                 {{-- <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"> --}}
                 Hardian Gallery
             </a>
@@ -72,7 +60,6 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        console.log(response);
                         window.location.href = "{{ url('/') }}";
                     },
                     error: function(xhr, status, error) {
@@ -83,6 +70,4 @@
             })
         });
     </script>
-</body>
-
-</html>
+@endsection

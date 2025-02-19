@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('album_id');
-            $table->foreignUuid('user_id');
+            $table->foreignUuid('album_id')->references('id')->on('albums')->onDelete('cascade');
+            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->text('description');
             $table->string('path');

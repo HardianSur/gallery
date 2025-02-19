@@ -1,8 +1,8 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ url('photo') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" /> --}}
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Hardian Gallery</span>
+            <img src="{{ asset('asset/images/h-icon.png') }}" class="h-12" alt="H-Gallery Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap bg-gradient-to-r from-slate-900 to-blue-700 bg-clip-text text-transparent dark:text-white">Hardian Gallery</span>
         </a>
         @auth
             <script>
@@ -77,17 +77,17 @@
         @guest
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
             <a href="{{ url('/auth/signin') }}"
-                class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                 aria-label="Cart">
+                <span>
                 Login
                 </span>
             </a>
 
             <a href="{{ url('/auth/register') }}"
-                class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+                class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                 aria-label="Cart">
-                Register
-                </span>
+                <span class="relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Register</span>
             </a>
         </div>
         @endguest

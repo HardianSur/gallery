@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('photo_id');
+            $table->foreignUuid('photo_id')->references('id')->on('photos')->onDelete('cascade');
             $table->foreignUuid('head_id')->nullable();
             $table->foreignUuid('user_id');
             $table->text('content');
