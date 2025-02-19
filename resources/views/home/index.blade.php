@@ -1,9 +1,9 @@
 @extends('components.main')
 
 @section('container')
-    <section class="mx-10 my-8 md:mx-20 md:my-16">
+    <section class="mx-10 my-8 md:mx-20 md:my-16 flex flex-col justify-center items-center">
 
-        <div class="flex flex-col justify-center items-center md:grid md:grid-cols-4 gap-4" id="main-section">
+        <div class="md:grid md:grid-cols-4 gap-6" id="main-section">
 
         </div>
     </section>

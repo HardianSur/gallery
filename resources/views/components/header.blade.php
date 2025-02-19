@@ -47,12 +47,9 @@
                             <a href="{{ url('/profile') }}/{{ auth()->id() }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{ url('/notification') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Notification
-                                <span id="notification-count"> {{ auth()->user()->unreadNotifications->count() }} </span>
-                            </a>
-                        </li> --}}
+                        <li>
+                            <a href="{{ url('/report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Report </a>
+                        </li>
                         <li>
                             <form action="{{ url('/auth/logout') }}" method="post">
                                 @csrf

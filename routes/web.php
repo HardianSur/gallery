@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\NotificationController;
 use App\Http\Controllers\Backend\PhotoController;
 use App\Http\Controllers\Backend\PhotoDetailController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/auth')->group(function () {
@@ -69,6 +70,10 @@ Route::middleware(["allow.guest.get", "isAdmin"])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::prefix('report')->group(function(){
+        Route::get('/',[ReportController::class, 'index']);
+    });
+
     Route::middleware("admin")->group(function () {
         Route::prefix("admin")->group(function () {
             Route::get("/", [AdminController::class, 'index']);
