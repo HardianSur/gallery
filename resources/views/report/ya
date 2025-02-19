@@ -1,0 +1,35 @@
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function redirectToExport(format) {
+                event.preventDefault();
+
+                var url = "{{ url('admin/kaporsatlap/rekapitulasi_data/ukuran_celana_pns/export/') }}" + format +
+                    '?id_bekang=' + $('#induk_bekang_id').val() +
+                    '&id_service=' + $('#service_area_id').val() +
+                    '&id_kesatuan=' + $('#kesatuan_id').val() +
+                    '&jenis=' + $('#jenis').val();
+                window.location.href = url;
+            }
+
+            // document.getElementById('export-pdf').addEventListener('click', function(event) {
+
+            //     if ($('#induk_bekang_id').val() == 'all') {
+            //         Swal.fire({
+            //             title: 'Peringatan',
+            //             text: 'Anda harus memilih Induk terlebih dahulu sebelum mengunduh PDF!',
+            //             icon: 'warning',
+            //             confirmButtonText: 'OK'
+            //         });
+            //         return;
+            //     }
+
+            //     redirectToExport('/pdf');
+            // });
+
+
+
+            document.getElementById('export-excel').addEventListener('click', function(event) {
+                redirectToExport('/excel');
+            });
+        });
+    </script>
