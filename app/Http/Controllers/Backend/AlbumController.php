@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class AlbumController extends Controller
 {
     public function index(){
-        $data = Album::with(['latestPhoto:id,album_id,path,created_at', 'user:id,username,avatar'])->inRandomOrder()->get();
+        $data = Album::with(['latestPhoto:id,album_id,path,created_at', 'user:id,username,avatar'])->inRandomOrder()->paginate(8);
 
         return view('album.index', compact('data'));
     }
@@ -25,7 +25,7 @@ class AlbumController extends Controller
 
         $photos = Photo::select(['id', 'path', 'title'])->whereHas('album', function($q) use ($id){
             $q->where('id', $id);
-        })->paginate(8);
+        })->latest()->paginate(8);
 
         return view('album.detail', compact('data', 'photos'));
     }

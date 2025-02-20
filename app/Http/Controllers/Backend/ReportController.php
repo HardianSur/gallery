@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Album;
+use App\Models\Like;
 use App\Models\Photo;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +18,25 @@ class ReportController extends Controller
     public function index(){
         $user = Auth::user();
         $album = Album::where('user_id', $user->id)->get(['id', 'title']);
-        // dd($album);
-        return view('report.index', compact('album'));
-    }
+
+        // $data = Photo::withCount(['like', 'comment'])->where('user_id', $user->id)->get();
+
+        $data = Photo::where('user_id', $user->id)
+        ->withCount(['like', 'comment'])
+        ->get()
+        ->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('F');
+        });
+
+        $labels = $data->keys();
+        $dataF = [
+            'likes' => $data->map(fn($month) =>  $month->sum('like_count'))->values(),
+            'comments' => $data->map(fn($month) => $month->sum('comment_count'))->values()
+        ];
+
+
+        return view('report.index', compact('album', 'labels', 'dataF'));
+        }
 
     public function retrieve(Request $request){
         try {

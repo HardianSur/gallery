@@ -24,7 +24,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $user->status }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <!-- Form Approve -->
-                                    <form method="POST" action="{{ url('admin', $user->id) }}" class="inline">
+                                    <form method="POST" action="{{ url("admin/$user->id") }}" class="inline">
                                         @csrf
                                         <input type="hidden" name="status" value=1>
                                         <button type="submit"
@@ -34,7 +34,7 @@
                                     </form>
 
                                     <!-- Form Reject -->
-                                    <form method="POST" action="{{ url('admin/', $user->id) }}" class="inline">
+                                    <form method="POST" action="{{ url("admin/$user->id") }}" class="inline">
                                         @csrf
                                         <input type="hidden" name="status" value=0>
                                         <button type="submit"

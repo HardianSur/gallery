@@ -123,7 +123,6 @@ class PhotoController extends Controller
                 'message' => "Successfuly get Data"
             ];
 
-
             return response()->json($resData, 200);
         } catch (Exception $e) {
             Log::error("Internal Server Error", [$e->getMessage()]);

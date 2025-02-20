@@ -2,6 +2,8 @@
 @extends('components.main')
 
 @section('container')
+
+
     <section class="mx-10 my-8 md:mx-20 md:my-16">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full group cursor-pointer p-4">
             <div>
@@ -19,14 +21,14 @@
         </div>
 
         <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full cp-4 mt-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 ">
                 @foreach ($photos as $photo)
                 <div>
                     <figure class="relative max-w-sm transition-all duration-300 group cursor-pointer inset-shadow-sm hover:shadow-2xl">
                         <a href="{{ url("photo/detail/$photo->id") }}">
-                            <img class="h-auto max-w-full rounded-lg" src="{{ url("storage/$photo->path") }}" alt="">
+                            <img class="max-h-60 w-full rounded-lg" src="{{ url("storage/$photo->path") }}" alt="">
                         </a>
-                        <figcaption class="absolute px-2 text-sm text-white font-semibold bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <figcaption class="absolute inset-0 px-2 text-sm text-white font-semibold flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg">
                             <p>{{ $photo->title }}</p>
                         </figcaption>
                     </figure>

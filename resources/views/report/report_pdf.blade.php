@@ -95,7 +95,7 @@
     </div>
 
     <div class="signature">
-        <p>Approved by, (H-Gallery)</p>
+        <p>Best regards, H-Gallery</p>
     </div>
 </body>
 </html>
