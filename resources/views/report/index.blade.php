@@ -15,6 +15,15 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <div class="my-4">
+            <div>
+                <select id="album-chart"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected value="">All Album</option>
+                    @foreach ($album as $v)
+                        <option value="{{ $v->id }}">{{ $v->title }}</option>
+                    @endforeach
+                </select>
+            </div>
             <canvas id="myChart"></canvas>
         </div>
 
@@ -99,34 +108,37 @@
             $('#export').click(function(e) {
                 exportPDF(e);
             });
+            $('#album-chart').change(function(e) {
+                getChartData();
+            });
 
             const ctx = document.getElementById('myChart').getContext('2d');
 
-            const labels = @json($labels);
-            const dataLikes = @json($dataF['likes']);
-            const dataComments = @json($dataF['comments']);
+            const initialLabels = [];
+            const initialDataLikes = [];
+            const initialDataComments = [];
 
-            new Chart(ctx, {
+            const reportChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: initialLabels,
                     datasets: [
                         {
                             label: 'Likes',
-                            data: dataLikes,
+                            data: initialDataLikes,
                             borderColor: 'rgba(75, 192, 192, 1)',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderWidth: 2,
-                            fill: true,
+                            fill: false,
                             tension: 0.4
                         },
                         {
                             label: 'Comments',
-                            data: dataComments,
+                            data: initialDataComments,
                             borderColor: 'rgba(255, 99, 132, 1)',
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             borderWidth: 2,
-                            fill: true,
+                            fill: false,
                             tension: 0.4
                         }
                     ]
@@ -142,19 +154,48 @@
                         x: {
                             title: {
                                 display: true,
-                                text: 'Bulan'
+                                text: 'Months'
                             }
                         },
                         y: {
                             title: {
                                 display: true,
-                                text: 'Jumlah'
+                                text: 'Totals'
                             },
                             beginAtZero: true
                         }
                     }
                 }
             });
+
+            getChartData();
+
+            function updateChartData(chart, labels, dataLikes, dataComments) {
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = dataLikes;
+                chart.data.datasets[1].data = dataComments;
+                chart.update();
+            }
+
+            function getChartData(){
+                $.ajax({
+                    url: `{{ url('report/retrieve_chart') }}`,
+                    data: {album: $('#album-chart').val()},
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response);
+
+                        const newLabels = response.data.labels;
+                        const newDataLikes = response.data.likes;
+                        const newDataComments = response.data.comments;
+
+                        updateChartData(reportChart, newLabels, newDataLikes, newDataComments);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching data:', error);
+                    }
+                });
+            }
 
             function loadPhotoCards() {
                 var album = $('#album').val();

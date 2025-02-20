@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 20 Feb 2025 pada 10.00
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Feb 20, 2025 at 03:18 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.2.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,20 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `albums`
+-- Table structure for table `albums`
 --
 
 CREATE TABLE `albums` (
-  `id` char(36) NOT NULL,
-  `user_id` char(36) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `albums`
+-- Dumping data for table `albums`
 --
 
 INSERT INTO `albums` (`id`, `user_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
@@ -54,45 +54,45 @@ INSERT INTO `albums` (`id`, `user_id`, `title`, `description`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cache`
+-- Table structure for table `cache`
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) NOT NULL,
-  `value` mediumtext NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cache_locks`
+-- Table structure for table `cache_locks`
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) NOT NULL,
-  `owner` varchar(255) NOT NULL,
-  `expiration` int(11) NOT NULL
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comments`
+-- Table structure for table `comments`
 --
 
 CREATE TABLE `comments` (
-  `id` char(36) NOT NULL,
-  `photo_id` char(36) NOT NULL,
-  `head_id` char(36) DEFAULT NULL,
-  `user_id` char(36) NOT NULL,
-  `content` text NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `head_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `photo_id`, `head_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
@@ -100,75 +100,82 @@ INSERT INTO `comments` (`id`, `photo_id`, `head_id`, `user_id`, `content`, `crea
 ('9e22daf1-f46b-4e10-81e0-f2a5163df657', '9e22bddb-b8c5-455d-9069-3724eca03fcd', '9e22d8fa-d551-4d7e-b07f-0bd93802a6c5', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'cihuyy', '2025-02-04 13:16:33', '2025-02-04 13:16:33'),
 ('9e3f7025-f622-4f4d-ba28-6ad53fda1b80', '9e22b8c4-5d26-40a7-bcad-108090f2add0', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'test', '2025-02-19 01:16:56', '2025-02-19 01:16:56'),
 ('9e3f7366-483c-48a8-8e0c-3f919d8ac614', '9e22c5c7-ff31-47c8-85cd-9c11aee0ad9b', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'cihuyy', '2025-02-19 01:26:02', '2025-02-19 01:26:02'),
-('9e4126f0-7ba5-47bb-ba02-2381e9911acc', '9e22bddb-b8c5-455d-9069-3724eca03fcd', NULL, '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'test', '2025-02-19 21:43:53', '2025-02-19 21:43:53');
+('9e4126f0-7ba5-47bb-ba02-2381e9911acc', '9e22bddb-b8c5-455d-9069-3724eca03fcd', NULL, '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'test', '2025-02-19 21:43:53', '2025-02-19 21:43:53'),
+('9e41df8d-19df-4bf4-89ba-2c2b35811723', '9e4105f4-ae53-4a59-9bd3-432995b58c2f', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'cakepnyooo', '2025-01-23 06:20:06', '2025-02-20 06:20:06'),
+('9e41dff4-3ef1-4e3f-b0a3-ca2d9ea2ef07', '9e410198-e2d8-4573-96b4-ce23ca1c894c', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'mi idolo', '2025-02-20 06:21:13', '2025-02-20 06:21:13'),
+('9e41e054-efa1-4d9f-990d-4349ed9631dd', '9e410643-4a26-4c67-9bb9-4a0f5feb4ccc', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'izin save bang', '2025-02-20 06:22:17', '2025-02-20 06:22:17'),
+('9e41e098-f59f-4951-95e1-011b175c2e69', '9e4101c0-bb2b-4ca9-8ce1-c2558efae63e', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'aku tw', '2025-02-20 06:23:01', '2025-02-20 06:23:01'),
+('9e41e0e8-7f7d-4664-bd44-e3448fbb1b22', '9e4105f4-ae53-4a59-9bd3-432995b58c2f', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'tutor bang', '2025-01-23 06:23:53', '2025-02-20 06:23:53'),
+('9e41e0f4-733b-44e2-987b-36b7d67d4030', '9e4105f4-ae53-4a59-9bd3-432995b58c2f', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'plisss', '2025-01-23 06:24:01', '2025-02-20 06:24:01'),
+('9e41e401-7049-4293-a344-23dcfe76da2a', '9e41065b-04f2-436d-a0f8-92353e1517b5', NULL, '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', 'cakep', '2025-02-20 06:32:33', '2025-02-20 06:32:33');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jobs`
+-- Table structure for table `jobs`
 --
 
 CREATE TABLE `jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `job_batches`
+-- Table structure for table `job_batches`
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `total_jobs` int(11) NOT NULL,
-  `pending_jobs` int(11) NOT NULL,
-  `failed_jobs` int(11) NOT NULL,
-  `failed_job_ids` longtext NOT NULL,
-  `options` mediumtext DEFAULT NULL,
-  `cancelled_at` int(11) DEFAULT NULL,
-  `created_at` int(11) NOT NULL,
-  `finished_at` int(11) DEFAULT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE `likes` (
-  `id` char(36) NOT NULL,
-  `user_id` char(36) NOT NULL,
-  `photo_id` char(36) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`id`, `user_id`, `photo_id`, `created_at`, `updated_at`) VALUES
@@ -178,22 +185,36 @@ INSERT INTO `likes` (`id`, `user_id`, `photo_id`, `created_at`, `updated_at`) VA
 ('9e411fca-824f-4236-a678-dee0d93e2ea6', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e41067d-9480-4608-9f80-b9cda21b9cbf', '2025-02-19 21:23:54', '2025-02-19 21:23:54'),
 ('9e41264c-e147-455a-800b-e053ab5e4126', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '9e410198-e2d8-4573-96b4-ce23ca1c894c', '2025-02-19 21:42:06', '2025-02-19 21:42:06'),
 ('9e41269d-0f26-4366-b7df-6577c6353e11', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '9e22bddb-b8c5-455d-9069-3724eca03fcd', '2025-02-19 21:42:58', '2025-02-19 21:42:58'),
-('9e412b75-2c39-439d-8a57-e6df44ad752d', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '9e4101db-e9bc-4abf-9a86-37699318d7c2', '2025-02-19 21:56:31', '2025-02-19 21:56:31');
+('9e412b75-2c39-439d-8a57-e6df44ad752d', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '9e4101db-e9bc-4abf-9a86-37699318d7c2', '2025-02-19 21:56:31', '2025-02-19 21:56:31'),
+('9e41df4c-ee70-4568-834c-5f4fe47d33ad', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e410152-8eea-45d5-a8f2-b58d84de20c1', '2025-02-20 06:19:24', '2025-02-20 06:19:24'),
+('9e41df55-9b70-4cd5-8a2b-5faeb5907748', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e3dd932-096c-466d-af07-8a50fd6f3895', '2025-02-20 06:19:29', '2025-02-20 06:19:29'),
+('9e41df5c-4141-4cc1-a064-5774b7d23dd9', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e4105f4-ae53-4a59-9bd3-432995b58c2f', '2025-01-22 06:19:34', '2025-02-20 06:19:34'),
+('9e41df5f-3c45-417e-adf5-d6c14a18c695', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e41198a-3d63-4558-b30c-e19076cf1d55', '2025-02-20 06:19:36', '2025-02-20 06:19:36'),
+('9e41df61-a673-45c6-9d4b-f43636fecf85', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e410178-5208-43b2-9cdb-f852b9b024bf', '2025-02-20 06:19:37', '2025-02-20 06:19:37'),
+('9e41df65-e23e-46bd-8159-6cb339e6014f', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e410629-0b18-468d-af67-84f6ed1cebc0', '2025-02-20 06:19:40', '2025-02-20 06:19:40'),
+('9e41df68-7385-4720-ac27-518a79f1f566', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e4106b1-de83-4e02-be9c-5dea5e2d9a4e', '2025-02-20 06:19:42', '2025-02-20 06:19:42'),
+('9e41df71-95ed-4b4f-b9ae-1a9eea26f352', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e4117f1-6d86-4083-a957-e280b9865ad9', '2025-02-20 06:19:48', '2025-02-20 06:19:48'),
+('9e41dfd0-9509-4595-9f9b-7cd10be24828', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e410198-e2d8-4573-96b4-ce23ca1c894c', '2025-02-20 06:20:50', '2025-02-20 06:20:50'),
+('9e41dfd3-6372-4de9-b08d-d2eec55f302a', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e4101db-e9bc-4abf-9a86-37699318d7c2', '2025-02-20 06:20:52', '2025-02-20 06:20:52'),
+('9e41e033-35a5-4e32-a461-7b5464c19ffd', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e411a9c-fb1e-432e-b2df-e1cfe290ef90', '2025-02-20 06:21:55', '2025-02-20 06:21:55'),
+('9e41e044-44a4-4782-a3ec-987354873c74', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e410643-4a26-4c67-9bb9-4a0f5feb4ccc', '2025-02-20 06:22:06', '2025-02-20 06:22:06'),
+('9e41e077-3bd8-4790-bf13-af2598c196d1', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e4101c0-bb2b-4ca9-8ce1-c2558efae63e', '2025-02-20 06:22:39', '2025-02-20 06:22:39'),
+('9e41e3f4-aaf5-4f7d-bfb5-86021fd4bae9', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '9e41065b-04f2-436d-a0f8-92353e1517b5', '2025-02-20 06:32:25', '2025-02-20 06:32:25');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -212,62 +233,85 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
-  `id` char(36) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `notifiable_type` varchar(255) NOT NULL,
-  `notifiable_id` char(36) NOT NULL,
-  `data` text NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `notifications`
+-- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
+('08ec26e8-0ca5-473a-9431-fe358dc6516c', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410643-4a26-4c67-9bb9-4a0f5feb4ccc\",\"photo_title\":\"KNY full hd\",\"type\":\"comment\",\"time\":\"2025-02-20T13:22:17.330961Z\"}', NULL, '2025-02-20 06:22:17', '2025-02-20 06:22:17'),
+('09c0e829-c6dd-4489-88ab-bb48dd29f9f5', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410629-0b18-468d-af67-84f6ed1cebc0\",\"photo_title\":\"Gojo Walpaper\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:40.649809Z\"}', NULL, '2025-02-20 06:19:40', '2025-02-20 06:19:40'),
+('12857bc6-3cae-4b4c-a1b4-5f73ab85e5bb', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410198-e2d8-4573-96b4-ce23ca1c894c\",\"photo_title\":\"fdgg\",\"type\":\"like\",\"time\":\"2025-02-20T13:20:50.574220Z\"}', NULL, '2025-02-20 06:20:50', '2025-02-20 06:20:50'),
+('1c0909bb-7e3a-41bf-ab01-dd0f5504dd72', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4101c0-bb2b-4ca9-8ce1-c2558efae63e\",\"photo_title\":\"fdgggg\",\"type\":\"like\",\"time\":\"2025-02-20T13:22:39.793436Z\"}', NULL, '2025-02-20 06:22:39', '2025-02-20 06:22:39'),
 ('234e496c-a43e-404e-9e90-fb7bce90a979', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '{\"message\":\"Okarun liked your photo\",\"liker_id\":\"9e22ae6d-b94c-41a9-9dea-e658c8012ac7\",\"photo_id\":\"9e22bddb-b8c5-455d-9069-3724eca03fcd\",\"photo_title\":\"Itulah duo trio\",\"type\":\"like\",\"time\":\"2025-02-20T04:42:58.913309Z\"}', NULL, '2025-02-19 21:42:58', '2025-02-19 21:42:58'),
+('252a14cd-a374-412e-a9ac-7b1ce6141330', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e41198a-3d63-4558-b30c-e19076cf1d55\",\"photo_title\":\"cat\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:36.295168Z\"}', NULL, '2025-02-20 06:19:36', '2025-02-20 06:19:36'),
+('4eb0bacc-2773-485f-9064-b2903eb5a61d', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e411a9c-fb1e-432e-b2df-e1cfe290ef90\",\"photo_title\":\"aa\",\"type\":\"like\",\"time\":\"2025-02-20T13:20:23.449724Z\"}', NULL, '2025-02-20 06:20:23', '2025-02-20 06:20:23'),
+('5bef7f01-2875-43d3-9465-bad033055a35', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4105f4-ae53-4a59-9bd3-432995b58c2f\",\"photo_title\":\"istri gwejh\",\"type\":\"comment\",\"time\":\"2025-02-20T13:24:01.872578Z\"}', NULL, '2025-02-20 06:24:01', '2025-02-20 06:24:01'),
+('5db9fbe1-0de2-44ec-a046-07312ab6cd59', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4106b1-de83-4e02-be9c-5dea5e2d9a4e\",\"photo_title\":\"dua tige domain\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:42.341524Z\"}', NULL, '2025-02-20 06:19:42', '2025-02-20 06:19:42'),
+('5e89504a-9152-49d3-b466-93280f4b6544', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4105f4-ae53-4a59-9bd3-432995b58c2f\",\"photo_title\":\"istri gwejh\",\"type\":\"comment\",\"time\":\"2025-02-20T13:23:54.030395Z\"}', NULL, '2025-02-20 06:23:54', '2025-02-20 06:23:54'),
+('619e1d06-5e5f-41a5-8028-174d4badb707', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410198-e2d8-4573-96b4-ce23ca1c894c\",\"photo_title\":\"fdgg\",\"type\":\"comment\",\"time\":\"2025-02-20T13:21:13.958433Z\"}', NULL, '2025-02-20 06:21:13', '2025-02-20 06:21:13'),
+('65db706b-d0e7-470c-a423-302172c88083', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410643-4a26-4c67-9bb9-4a0f5feb4ccc\",\"photo_title\":\"KNY full hd\",\"type\":\"like\",\"time\":\"2025-02-20T13:22:06.390515Z\"}', NULL, '2025-02-20 06:22:06', '2025-02-20 06:22:06'),
+('663d74b6-307d-4b11-ac6a-24b3324f2787', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4101c0-bb2b-4ca9-8ce1-c2558efae63e\",\"photo_title\":\"fdgggg\",\"type\":\"comment\",\"time\":\"2025-02-20T13:23:01.907268Z\"}', NULL, '2025-02-20 06:23:01', '2025-02-20 06:23:01'),
+('78e2dcb8-24dc-47e8-8618-a7654fbe167b', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e41065b-04f2-436d-a0f8-92353e1517b5\",\"photo_title\":\"gw bgt\",\"type\":\"comment\",\"time\":\"2025-02-20T13:32:33.694887Z\"}', NULL, '2025-02-20 06:32:33', '2025-02-20 06:32:33'),
+('795a73d1-a28e-4200-8e0e-db484e10435d', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e41065b-04f2-436d-a0f8-92353e1517b5\",\"photo_title\":\"gw bgt\",\"type\":\"like\",\"time\":\"2025-02-20T13:32:25.327135Z\"}', NULL, '2025-02-20 06:32:25', '2025-02-20 06:32:25'),
+('87ecbd71-fc62-4848-8b1d-2f64f953d346', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e411a9c-fb1e-432e-b2df-e1cfe290ef90\",\"photo_title\":\"aa\",\"type\":\"like\",\"time\":\"2025-02-20T13:21:55.231527Z\"}', NULL, '2025-02-20 06:21:55', '2025-02-20 06:21:55'),
+('9d8bbeb6-c24d-42df-8d5e-56015a1d5bc2', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410152-8eea-45d5-a8f2-b58d84de20c1\",\"photo_title\":\"w\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:24.310522Z\"}', NULL, '2025-02-20 06:19:24', '2025-02-20 06:19:24'),
+('bc3ef066-69d0-4b2f-ae4b-450ee7c69e8e', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e410178-5208-43b2-9cdb-f852b9b024bf\",\"photo_title\":\"wsa\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:37.886178Z\"}', NULL, '2025-02-20 06:19:37', '2025-02-20 06:19:37'),
 ('c04ade2f-444b-42ab-ba23-32058365b952', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '{\"message\":\"Darwin Nunez liked your photo\",\"liker_id\":\"9e22ae6d-0c04-47e8-a84f-2b620ff805cc\",\"photo_id\":\"9e22c5c7-ff31-47c8-85cd-9c11aee0ad9b\",\"photo_title\":\"Firts touch at LaLiga\",\"type\":\"like\",\"time\":\"2025-02-05T04:47:15.369033Z\"}', '2025-02-17 19:28:38', '2025-02-04 14:47:15', '2025-02-17 19:28:38'),
+('c0720e5e-f5be-4b54-9ae4-b46ffed61e2b', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4105f4-ae53-4a59-9bd3-432995b58c2f\",\"photo_title\":\"istri gwejh\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:34.343877Z\"}', NULL, '2025-02-20 06:19:34', '2025-02-20 06:19:34'),
+('c5c01ea3-5375-49e1-ab8c-01c2f41a936c', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos comment on your photo\",\"user_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4105f4-ae53-4a59-9bd3-432995b58c2f\",\"photo_title\":\"istri gwejh\",\"type\":\"comment\",\"time\":\"2025-02-20T13:20:06.408891Z\"}', NULL, '2025-02-20 06:20:06', '2025-02-20 06:20:06'),
 ('d503ef4b-b42f-4d69-ba6d-848e5d482e4e', 'App\\Notifications\\NewCommentNotification', 'App\\Models\\User', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '{\"message\":\"Okarun comment on your photo\",\"user_id\":\"9e22ae6d-b94c-41a9-9dea-e658c8012ac7\",\"photo_id\":\"9e22bddb-b8c5-455d-9069-3724eca03fcd\",\"photo_title\":\"Itulah duo trio\",\"type\":\"comment\",\"time\":\"2025-02-20T04:43:53.586671Z\"}', NULL, '2025-02-19 21:43:53', '2025-02-19 21:43:53'),
+('dbe30785-9056-4213-8894-4564c532de1a', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4101db-e9bc-4abf-9a86-37699318d7c2\",\"photo_title\":\"fdgggghhsdfsd\",\"type\":\"like\",\"time\":\"2025-02-20T13:20:52.422500Z\"}', NULL, '2025-02-20 06:20:52', '2025-02-20 06:20:52'),
+('dc7879dc-7613-4e09-ab96-306ebf45b9bf', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-637d-463d-8b4d-bc0a186518c2', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e3dd932-096c-466d-af07-8a50fd6f3895\",\"photo_title\":\"Ayo Ayoi\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:29.990668Z\"}', NULL, '2025-02-20 06:19:29', '2025-02-20 06:19:29'),
 ('ddd10a7e-b80d-409e-aa68-f4222e490926', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e41067d-9480-4608-9f80-b9cda21b9cbf\",\"photo_title\":\"yooo\",\"type\":\"like\",\"time\":\"2025-02-20T04:23:54.296713Z\"}', '2025-02-19 21:42:12', '2025-02-19 21:23:54', '2025-02-19 21:42:12'),
+('e9d22f57-0eed-43d9-a801-85254f7d097c', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-637d-463d-8b4d-bc0a186518c2', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e3dd932-096c-466d-af07-8a50fd6f3895\",\"photo_title\":\"Ayo Ayoi\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:22.083834Z\"}', NULL, '2025-02-20 06:19:22', '2025-02-20 06:19:22'),
+('f72c1a57-d32c-4867-80fd-2972d4fcf674', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '{\"message\":\"Anthony Santos liked your photo\",\"liker_id\":\"9e22ae6c-b5f6-4512-90ee-24b8f17acc65\",\"photo_id\":\"9e4117f1-6d86-4083-a957-e280b9865ad9\",\"photo_title\":\"hhh\",\"type\":\"like\",\"time\":\"2025-02-20T13:19:48.323462Z\"}', NULL, '2025-02-20 06:19:48', '2025-02-20 06:19:48'),
 ('fa05e11d-691c-4f24-b742-3ce148ad33c7', 'App\\Notifications\\NewLikeNotification', 'App\\Models\\User', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '{\"message\":\"PT Tuma Epos liked your photo\",\"liker_id\":\"9e22ae6d-637d-463d-8b4d-bc0a186518c2\",\"photo_id\":\"9e22c5c7-ff31-47c8-85cd-9c11aee0ad9b\",\"photo_title\":\"Firts touch at LaLiga\",\"type\":\"like\",\"time\":\"2025-02-19T04:49:39.523833Z\"}', '2025-02-18 21:49:45', '2025-02-18 21:49:39', '2025-02-18 21:49:45');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `photos`
+-- Table structure for table `photos`
 --
 
 CREATE TABLE `photos` (
-  `id` char(36) NOT NULL,
-  `album_id` char(36) NOT NULL,
-  `user_id` char(36) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `path` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `album_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `photos`
+-- Dumping data for table `photos`
 --
 
 INSERT INTO `photos` (`id`, `album_id`, `user_id`, `title`, `description`, `path`, `created_at`, `updated_at`) VALUES
@@ -289,7 +333,7 @@ INSERT INTO `photos` (`id`, `album_id`, `user_id`, `title`, `description`, `path
 ('9e4101c0-bb2b-4ca9-8ce1-c2558efae63e', '9e410137-3961-4ab4-8b1d-f27ff46ae31c', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'fdgggg', 'dfssdfgdfdfgdf', 'images/owTYPX8HJRn1JAS3BLJ2QDCI43QSQ1DYrVSHnJMD.jpg', '2025-02-19 19:59:54', '2025-02-19 19:59:54'),
 ('9e4101cd-94d9-485a-8f78-f1f462dab144', '9e410137-3961-4ab4-8b1d-f27ff46ae31c', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'fdgggghh', 'dfssdfgdfdfgdf', 'images/kc5MTHCfofTwCmV8YpbiVWocGUNVofnl1EIcaD2z.jpg', '2025-02-19 20:00:03', '2025-02-19 20:00:03'),
 ('9e4101db-e9bc-4abf-9a86-37699318d7c2', '9e410137-3961-4ab4-8b1d-f27ff46ae31c', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'fdgggghhsdfsd', 'dfssdfgdfdfgdfdfsfsd', 'images/Ju2gYkO5R2AWoW7S33O2Qq9ilU8cmuRBM3aFqas9.jpg', '2025-02-19 20:00:12', '2025-02-19 20:00:12'),
-('9e4105f4-ae53-4a59-9bd3-432995b58c2f', '9e4104c9-c03c-412c-bc1c-3a543fa2bde2', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'istri gwejh', 'dd', 'images/3HXsTVj1kCj5VfeEgFNmIb64HQmBSLrCcokbNiDu.jpg', '2025-02-19 20:11:39', '2025-02-19 20:11:39'),
+('9e4105f4-ae53-4a59-9bd3-432995b58c2f', '9e4104c9-c03c-412c-bc1c-3a543fa2bde2', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'istri gwejh', 'dd', 'images/3HXsTVj1kCj5VfeEgFNmIb64HQmBSLrCcokbNiDu.jpg', '2025-01-20 20:11:39', '2025-02-19 20:11:39'),
 ('9e410629-0b18-468d-af67-84f6ed1cebc0', '9e4104c9-c03c-412c-bc1c-3a543fa2bde2', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'Gojo Walpaper', 'dd', 'images/A6gjBJT6iJnfWShyOr2NISmfz1bdBGPwlGYhMvam.jpg', '2025-02-19 20:12:14', '2025-02-19 20:12:14'),
 ('9e410643-4a26-4c67-9bb9-4a0f5feb4ccc', '9e4104c9-c03c-412c-bc1c-3a543fa2bde2', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'KNY full hd', 'dd', 'images/Gi3w3beEmGln0DeEsLOwsENuRpJiLXvBVZaTZOkq.jpg', '2025-02-19 20:12:31', '2025-02-19 20:12:31'),
 ('9e41065b-04f2-436d-a0f8-92353e1517b5', '9e4104c9-c03c-412c-bc1c-3a543fa2bde2', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', 'gw bgt', 'dd', 'images/iae5exhAGAUklOFWSl5AKTYPScnkxwU27I08oajW.jpg', '2025-02-19 20:12:46', '2025-02-19 20:12:46'),
@@ -303,23 +347,23 @@ INSERT INTO `photos` (`id`, `album_id`, `user_id`, `title`, `description`, `path
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `registration_requests`
+-- Table structure for table `registration_requests`
 --
 
 CREATE TABLE `registration_requests` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `address` text DEFAULT NULL,
-  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `registration_requests`
+-- Dumping data for table `registration_requests`
 --
 
 INSERT INTO `registration_requests` (`id`, `name`, `username`, `email`, `password`, `address`, `status`, `created_at`, `updated_at`) VALUES
@@ -329,18 +373,18 @@ INSERT INTO `registration_requests` (`id`, `name`, `username`, `email`, `passwor
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
-  `id` char(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -350,49 +394,49 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) NOT NULL,
-  `user_id` char(36) DEFAULT NULL,
-  `ip_address` varchar(45) DEFAULT NULL,
-  `user_agent` text DEFAULT NULL,
-  `payload` longtext NOT NULL,
-  `last_activity` int(11) NOT NULL
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `sessions`
+-- Dumping data for table `sessions`
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('dkgYzcWHtGCzO31cSwZMpxHC6o9Ey6wdVPzaTZXy', '9e22ae6c-5f7b-4190-8e07-d0eef6f3fe0a', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUjF5MXg1dHY1d0h1ZmFoMEhaRVJCeFBVYk5tY1I0RDB6SHNIODJBaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtzOjM2OiI5ZTIyYWU2Yy01ZjdiLTQxOTAtOGUwNy1kMGVlZjZmM2ZlMGEiO30=', 1740038715),
-('ZHuBTMyoaZR79qx70sxlgE17dColnXQlLjLeZcvH', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiejZTeVp0NzdjeUk1S0lDbHZlYklXSktMeHluamhLWmZ4aW1rcHhYNyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9yZXBvcnQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7czozNjoiOWUyMmFlNmQtYjk0Yy00MWE5LTlkZWEtZTY1OGM4MDEyYWM3Ijt9', 1740038750);
+('5tjp6yGe5MOlkZgS6h42jnr15Z08fIKt4bZBWlmh', '9e22ae6d-b94c-41a9-9dea-e658c8012ac7', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWXVSRUZ5alp3QWRsZU95YVVlMmRORTZTQ2FIM3VMRTh5Wm5JRVNJdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6ODY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9yZXBvcnQvcmV0cmlldmVfY2hhcnQ/YWxidW09OWU0MTA0YzktYzAzYy00MTJjLWJjMWMtM2E1NDNmYTJiZGUyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6IjllMjJhZTZkLWI5NGMtNDFhOS05ZGVhLWU2NThjODAxMmFjNyI7fQ==', 1740063962),
+('OMz1mg837TBhcBOL1fcaNsyj0cUObGxUJqRwHnJH', '9e22ae6c-b5f6-4512-90ee-24b8f17acc65', '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVHRwUHhWcjQxd0pHMXpqVkl2MERvRHYxRkM4Tk14RG9Xd1FQYWdqWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NzE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9waG90by9kZXRhaWwvOWU0MTA2NWItMDRmMi00MzZkLWEwZjgtOTIzNTNlMTUxN2I1Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6IjllMjJhZTZjLWI1ZjYtNDUxMi05MGVlLTI0YjhmMTdhY2M2NSI7fQ==', 1740063760);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` char(36) NOT NULL,
-  `role_id` char(36) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `address` text DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role_id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `username`, `email`, `address`, `avatar`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -425,52 +469,52 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `username`, `email`, `address`, `a
 --
 
 --
--- Indeks untuk tabel `albums`
+-- Indexes for table `albums`
 --
 ALTER TABLE `albums`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `cache`
+-- Indexes for table `cache`
 --
 ALTER TABLE `cache`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indeks untuk tabel `cache_locks`
+-- Indexes for table `cache_locks`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indeks untuk tabel `comments`
+-- Indexes for table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `comments_photo_id_foreign` (`photo_id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `jobs`
+-- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`);
 
 --
--- Indeks untuk tabel `job_batches`
+-- Indexes for table `job_batches`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `likes`
+-- Indexes for table `likes`
 --
 ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`),
@@ -478,26 +522,26 @@ ALTER TABLE `likes`
   ADD KEY `likes_photo_id_foreign` (`photo_id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `notifications`
+-- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `notifications_notifiable_type_notifiable_id_index` (`notifiable_type`,`notifiable_id`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `photos`
+-- Indexes for table `photos`
 --
 ALTER TABLE `photos`
   ADD PRIMARY KEY (`id`),
@@ -505,7 +549,7 @@ ALTER TABLE `photos`
   ADD KEY `photos_user_id_foreign` (`user_id`);
 
 --
--- Indeks untuk tabel `registration_requests`
+-- Indexes for table `registration_requests`
 --
 ALTER TABLE `registration_requests`
   ADD PRIMARY KEY (`id`),
@@ -513,13 +557,13 @@ ALTER TABLE `registration_requests`
   ADD UNIQUE KEY `registration_requests_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sessions`
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -527,7 +571,7 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -535,59 +579,59 @@ ALTER TABLE `users`
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `jobs`
+-- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `registration_requests`
+-- AUTO_INCREMENT for table `registration_requests`
 --
 ALTER TABLE `registration_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `comments`
+-- Constraints for table `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_photo_id_foreign` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `likes`
+-- Constraints for table `likes`
 --
 ALTER TABLE `likes`
   ADD CONSTRAINT `likes_photo_id_foreign` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `likes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `photos`
+-- Constraints for table `photos`
 --
 ALTER TABLE `photos`
   ADD CONSTRAINT `photos_album_id_foreign` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `photos_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;

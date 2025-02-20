@@ -19,24 +19,62 @@ class ReportController extends Controller
         $user = Auth::user();
         $album = Album::where('user_id', $user->id)->get(['id', 'title']);
 
-        // $data = Photo::withCount(['like', 'comment'])->where('user_id', $user->id)->get();
+        $data = Photo::withCount(['like', 'comment'])
+                ->where('user_id', $user->id)
+                ->get()
+                ->groupBy(function ($photo) {
+                    return Carbon::parse($photo->created_at)->format('Y-m');
+                })
+                ->sortKeys();
 
-        $data = Photo::where('user_id', $user->id)
-        ->withCount(['like', 'comment'])
-        ->get()
-        ->groupBy(function ($date) {
-            return Carbon::parse($date->created_at)->format('F');
-        });
+        $labels = $data->keys()->map(function ($date) {
+            return Carbon::createFromFormat('Y-m', $date)->format('F Y');
+        })->toArray();
 
-        $labels = $data->keys();
         $dataF = [
             'likes' => $data->map(fn($month) =>  $month->sum('like_count'))->values(),
             'comments' => $data->map(fn($month) => $month->sum('comment_count'))->values()
         ];
 
-
         return view('report.index', compact('album', 'labels', 'dataF'));
+    }
+
+    public function retrieve_chart(Request $request){
+        try {
+            $user = Auth::user();
+            $album = $request->input("album");
+
+            $data = Photo::withCount(['like', 'comment'])
+                ->where('user_id', $user->id);
+
+                if($album){
+                    $data->whereHas('album',fn($q)=>$q->where('id', $album));
+                }
+
+            $data = $data->get()
+                ->groupBy(function ($photo) {
+                    return Carbon::parse($photo->created_at)->format('Y-m');
+                })
+                ->sortKeys();
+
+            $labels = $data->keys()->map(function ($date) {
+                return Carbon::createFromFormat('Y-m', $date)->format('F Y');
+            })->toArray();
+
+            $likes = $data->map(fn($month) =>  $month->sum('like_count'))->values();
+            $comments = $data->map(fn($month) => $month->sum('comment_count'))->values();
+
+            return response()->json(['Message'=>'Successfully get data', 'data'=>[
+                'likes' => $likes,
+                'comments'=>$comments,
+                'labels'=>$labels
+            ]]);
+
+        } catch (\Exception $e) {
+            Log::error("Internal Server Error", [$e->getMessage()]);
+            return response()->json('error', 500);
         }
+    }
 
     public function retrieve(Request $request){
         try {

@@ -72,6 +72,7 @@ Route::middleware(["allow.guest.get", "isAdmin"])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::prefix('report')->group(function(){
         Route::get('/',[ReportController::class, 'index']);
+        Route::get('/retrieve_chart',[ReportController::class, 'retrieve_chart']);
         Route::get('/retrieve',[ReportController::class, 'retrieve']);
         Route::get('/download',[ReportController::class, 'exportPDF']);
         Route::get('/preview', function(){
