@@ -73,6 +73,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('report')->group(function(){
         Route::get('/',[ReportController::class, 'index']);
         Route::get('/retrieve',[ReportController::class, 'retrieve']);
+        Route::get('/download',[ReportController::class, 'exportPDF']);
+        Route::get('/preview', function(){
+            return view('report.report_pdf');
+        });
     });
 
     Route::middleware("admin")->group(function () {

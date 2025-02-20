@@ -25,7 +25,7 @@ class AlbumController extends Controller
 
         $photos = Photo::select(['id', 'path', 'title'])->whereHas('album', function($q) use ($id){
             $q->where('id', $id);
-        })->get();
+        })->paginate(8);
 
         return view('album.detail', compact('data', 'photos'));
     }

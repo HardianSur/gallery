@@ -1,3 +1,4 @@
+{{-- @dd($photos) --}}
 @extends('components.main')
 
 @section('container')
@@ -17,8 +18,8 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full cursor-pointer p-4 mt-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full cp-4 mt-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
                 @foreach ($photos as $photo)
                 <div>
                     <figure class="relative max-w-sm transition-all duration-300 group cursor-pointer inset-shadow-sm hover:shadow-2xl">
@@ -31,6 +32,9 @@
                     </figure>
                 </div>
                 @endforeach
+            </div>
+            <div class="p-4">
+                {{ $photos->links() }}
             </div>
         </div>
     </section>
